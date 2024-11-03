@@ -1,0 +1,72 @@
+%%   mermaid-diagram
+flowchart TB
+    subgraph Factors["Game Constants"]
+        ExistingCat["Currently Playing Cats at the Goodie"] --> CatRelations["Cat Relationship Modifier"]
+        PlayspaceOnCat["Cat Attraction Weights"]
+        Food["Food Type"]
+        Charm["Playspace Charm Value"]
+        Weather["Weather Condition"]
+        CatMul["Cat Gift Multiplier / 250"]
+        GoldConvParam["Gold Fish Conversion Rates<br>(0.08 Indoor, 0.04 Outdoor)"]
+        IsIndoor["Indoor/Outdoor Location"]
+        GoldRate["Base Gold Fish Rate = 0.5"]
+        GoodieMul["Goodie Gift Multiplier"]
+    end
+    
+    subgraph VisitCalculations["Visit Rate Calculations"]
+        Note["`Implementation Notes:
+        - This analysis treats all factors as distributions, combining cat selection probability with stay probability
+        * Stay rate directly affects visit probability so it will be better to also iterate on visit prob -> stay rate, rather than applying interaction multiplier on stay rate, but it's for another day ig. I also don't find an obvious way to do it
+        ** Some of the conflits are not computed, particually for Tower of Treats. See Notes/Caveats Section.`"]
+        CatSelect["Cat Selection<br><br>(In the game, for each tick, the algo first selects one cat if it's empty)"] --> VisitProb["Visit Probability<br><br>(The game then determines if selected cat will visit)"]
+        VisitProb -->|Conversion| StayRate["Stay Rate<br><br>(Probability of cat presence per tick - used for fish calculations)"]
+    end
+    
+    subgraph Constraints["Considered Constraints"]
+        CatOnCat["Existing Cats Influence Selection Weights"]
+        ConflictRes["Position Conflicts**<br>(e.g., Burger Cushion's two positions share one slot)"]
+        SameCat["Cat Cannot Appear in Multiple Locations*"]
+        RoundDown["Rounding Down Multiplier"]
+    end
+    
+    subgraph BasicRates["Fish Generation Rates"]
+        SilverRate["Silver Fish Rate"]
+        GoldConv["Gold Fish Conversion Rate"]
+        FinalSilver["Final Silver Fish Rate"]
+        FinalGold["Final Gold Fish Rate"]
+    end
+    
+    subgraph FinalCalc["Output Calculations"]
+        direction TB
+        StayRate --> CatProbOutput
+        StayRate --> SilverOutput
+        StayRate --> GoldOutput
+        TotalTicks --> SilverOutput
+        FinalSilver --> SilverOutput["Silver Fish Output"]
+        TotalTicks --> GoldOutput
+        FinalGold --> GoldOutput["Gold Fish Output"]
+        CatProbOutput["Cat Appearance Probability"]
+        CatProbOutput --> TotalValue["Final Results"]
+        SilverOutput --> TotalValue
+        GoldOutput --> TotalValue
+        DurationMin["Duration (Minutes)"] --> TotalTicks["Total Time Ticks"]
+    end
+    
+    PlayspaceOnCat --> CatSelect
+    CatRelations --> CatSelect
+    Food --> VisitProb
+    Charm --> VisitProb
+    Weather --> VisitProb
+    ConflictRes --> StayRate
+    SameCat --> StayRate
+    StayRate -.->|"Iterative Optimization (Constraint #1)"| ExistingCat
+    CatMul --> SilverRate
+    GoodieMul --> SilverRate
+    IsIndoor --> GoldConv
+    GoldConvParam --> GoldConv
+    RoundDown --> FinalGold
+    GoldConv --> FinalGold
+    GoldRate --> FinalGold
+    RoundDown --> FinalSilver
+    SilverRate --> FinalSilver
+    GoldConv -->|1-gold_conv| FinalSilver
