@@ -289,8 +289,6 @@ class NekoAtsumeAnalyzer:
                 per_cat_visit_prob_given_visit = (
                     per_cat_visit_prob / playspace_visit_prob
                 )
-                if playspace_id == 1210:
-                    print(list(zip(cat_ids, draw_probability)))
 
                 # Assume the spot is only for one cat, what is the percentage of time it
                 # will be filled for each cat. There are two states, the cat is there or
@@ -505,7 +503,6 @@ class NekoAtsumeAnalyzer:
                 "conflicted_idxs": self.playspace_mappings["conflicted_idxs"][
                     playspace_id
                 ].strip(),
-                "visit_prob_multiplier": np.ones(len(cat_ids)),
             }
 
     def enumerate_constraints(self):
@@ -599,8 +596,6 @@ class NekoAtsumeAnalyzer:
                         / per_cat_visit_prob.sum()
                         * adjusted_playspace_stay_rate
                     )
-            # if playspace_id_to_item_id[playspace_id] == 230:
-            #     breakpoint()
 
     def resolve_interactions(self):
         self.calculate_per_cat_stay_rate()
