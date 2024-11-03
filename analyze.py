@@ -22,6 +22,69 @@ class GameConstants:
     SILVER_FISH_PER_GOLD_FISH = 25
     # Well you can buy things (remodeling) with silver fish, and hence the conversion rate
     GOLD_FISH_PER_SILVER_FISH = 1 / 50
+    GOODS_ID_DICT_IN_CODE = {
+        0: "None",
+        1: "Karikari",
+        2: "GoodKarikari",
+        3: "NekoCan",
+        4: "KatsuoCan",
+        5: "MaguroCan",
+        6: "Sashimi",
+        7: "Funamori",
+        100: "Baseball",
+        101: "RubberBallRed",
+        106: "PingPongBall",
+        108: "StressReliever",
+        109: "BallOfYarn",
+        111: "TemariBall",
+        112: "CakeBox",
+        115: "ShoppingBoxSmall",
+        116: "ShoppingBoxMiddle",
+        118: "CardboardTruck",
+        121: "HouseDeluxe",
+        122: "CafeDeluxe",
+        152: "FluffyBedWhite",
+        170: "FluffyCushion",
+        171: "UmeCushionRed",
+        178: "BurgerCushion",
+        188: "PlumCocoon",
+        198: "BeadedCushion",
+        199: "BigCushion",
+        200: "BigCushionWhite",
+        222: "BeachParasol",
+        224: "Tower2",
+        225: "Tower3",
+        232: "TunnelI",
+        233: "TunnelU",
+        234: "TunnelT",
+        244: "Catnip",
+        251: "GripesMmouse",
+        256: "AutomaticBunbunmaru",
+        258: "RailHereAndThere",
+        272: "PaperBag",
+        273: "VinylBag",
+        274: "HorizontalRopeNailClogger",
+        275: "VerticalRopeNailClogger",
+        277: "FruitBasket",
+        278: "EarthenwarePot",
+        282: "Tsubo",
+        289: "BucketBlue",
+        294: "GoldfishBowl",
+        296: "GlassVase",
+        297: "OversizedPatternedGlass",
+        298: "WesternHats",
+        300: "CatMacaroonPink",
+        304: "Tissue",
+        305: "Eco Bag",
+        306: "Golden Fish Statue",
+        5000: "Ground1",
+        5001: "MynekoGround",
+        5002: "FollowGround",
+        10000: "Teisatsu",
+        10001: "Onmitsu",
+        10010: "RefillFood",
+        10011: "Cleaning",
+    }
 
 
 class WeatherTypes:
@@ -795,8 +858,9 @@ def main():
     sorted_items = sorted(results.items(), key=lambda x: x[1], reverse=True)
     df = pd.DataFrame(sorted_items, columns=["GoodId", "Value"])
     df["Name"] = df["GoodId"].map(lambda x: analyzer.item_to_name.get(str(x), "-"))
-    df["Is Large"] = df["GoodId"].map(
-        lambda x: analyzer.item_to_size.get(str(x), "-")
+    df["Is Large"] = df["GoodId"].map(lambda x: analyzer.item_to_size.get(str(x), "-"))
+    df["Is in NA2 Code"] = df["GoodId"].map(
+        lambda x: x in GameConstants.GOODS_ID_DICT_IN_CODE
     )
     df.rename(columns={"GoodId": "Goodie Id"}, inplace=True)
     if analyzer.is_custom_grouping:
@@ -807,9 +871,11 @@ def main():
                 else "-"
             )
         )
-        df = df[["Goodie Id", "Name", "Is Large", "Is Indoor", "Value"]]
+        df = df[
+            ["Goodie Id", "Name", "Is Large", "Is Indoor", "Is in NA2 Code", "Value"]
+        ]
     else:
-        df = df[["Goodie Id", "Name", "Is Large", "Value"]]
+        df = df[["Goodie Id", "Name", "Is Large", "Is in NA2 Code", "Value"]]
     data = df.to_markdown(tablefmt="github", index=False)
     with open("output.md", "w") as f:
         content = args.__repr__()
