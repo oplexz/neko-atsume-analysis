@@ -22,67 +22,6 @@ class GameConstants:
     SILVER_FISH_PER_GOLD_FISH = 25
     # Well you can buy things (remodeling) with silver fish, and hence the conversion rate
     GOLD_FISH_PER_SILVER_FISH = 1 / 50
-    GOODS_ID_DICT = {
-        0: "None",
-        1: "Karikari",
-        2: "GoodKarikari",
-        3: "NekoCan",
-        4: "KatsuoCan",
-        5: "MaguroCan",
-        6: "Sashimi",
-        7: "Funamori",
-        100: "Baseball",
-        101: "RubberBallRed",
-        106: "PingPongBall",
-        108: "StressReliever",
-        109: "BallOfYarn",
-        111: "TemariBall",
-        112: "CakeBox",
-        115: "ShoppingBoxSmall",
-        116: "ShoppingBoxMiddle",
-        118: "CardboardTruck",
-        121: "HouseDeluxe",
-        122: "CafeDeluxe",
-        152: "FluffyBedWhite",
-        170: "FluffyCushion",
-        171: "UmeCushionRed",
-        178: "BurgerCushion",
-        188: "PlumCocoon",
-        198: "BeadedCushion",
-        199: "BigCushion",
-        200: "BigCushionWhite",
-        222: "BeachParasol",
-        224: "Tower2",
-        225: "Tower3",
-        232: "TunnelI",
-        233: "TunnelU",
-        234: "TunnelT",
-        244: "Catnip",
-        251: "GripesMmouse",
-        256: "AutomaticBunbunmaru",
-        258: "RailHereAndThere",
-        272: "PaperBag",
-        273: "VinylBag",
-        274: "HorizontalRopeNailClogger",
-        275: "VerticalRopeNailClogger",
-        277: "FruitBasket",
-        278: "EarthenwarePot",
-        282: "Tsubo",
-        289: "BucketBlue",
-        294: "GoldfishBowl",
-        296: "GlassVase",
-        297: "OversizedPatternedGlass",
-        298: "WesternHats",
-        300: "CatMacaroonPink",
-        304: "Tissue",
-        5000: "Ground1",
-        5001: "MynekoGround",
-        5002: "FollowGround",
-        10000: "Teisatsu",
-        10001: "Onmitsu",
-        10010: "RefillFood",
-        10011: "Cleaning",
-    }
 
 
 class WeatherTypes:
@@ -222,6 +161,8 @@ class NekoAtsumeAnalyzer:
 
     def initialize_data(self):
         # Load all necessary data
+        self.item_to_name = DataLoader.load_json_data("data/item_to_name.json")
+        self.item_to_size = DataLoader.load_json_data("data/item_to_size.json")
         self.cat_vs_food = DataLoader.create_cat_vs_food_dict(
             DataLoader.load_json_data("data/output_playspace_vs_food.json"),
             self.args.food_type,
@@ -853,18 +794,22 @@ def main():
     # Output results
     sorted_items = sorted(results.items(), key=lambda x: x[1], reverse=True)
     df = pd.DataFrame(sorted_items, columns=["GoodId", "Value"])
-    df["Name"] = df["GoodId"].map(lambda x: GameConstants.GOODS_ID_DICT.get(x, "-"))
+    df["Name"] = df["GoodId"].map(lambda x: analyzer.item_to_name.get(str(x), "-"))
+    df["Is Large"] = df["GoodId"].map(
+        lambda x: analyzer.item_to_size.get(str(x), "-")
+    )
+    df.rename(columns={"GoodId": "Goodie Id"}, inplace=True)
     if analyzer.is_custom_grouping:
-        df["IsIndoor"] = df["GoodId"].map(
+        df["Is Indoor"] = df["Goodie Id"].map(
             lambda x: (
                 analyzer.grouping_strategy.get_is_indoors_item(x)
                 if type(x) == int
                 else "-"
             )
         )
-        df = df[["GoodId", "Name", "IsIndoor", "Value"]]
+        df = df[["Goodie Id", "Name", "Is Large", "Is Indoor", "Value"]]
     else:
-        df = df[["GoodId", "Name", "Value"]]
+        df = df[["Goodie Id", "Name", "Is Large", "Value"]]
     data = df.to_markdown(tablefmt="github", index=False)
     with open("output.md", "w") as f:
         content = args.__repr__()
