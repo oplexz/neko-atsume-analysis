@@ -227,7 +227,7 @@ class NekoAtsumeAnalyzer:
         self.item_to_name = DataLoader.load_json_data("data/item_to_name.json")
         self.item_to_size = DataLoader.load_json_data("data/item_to_size.json")
         self.cat_vs_food = DataLoader.create_cat_vs_food_dict(
-            DataLoader.load_json_data("data/output_playspace_vs_food.json"),
+            DataLoader.load_json_data("data/output_cat_vs_food.json"),
             self.args.food_type,
         )
         self.cat_vs_cat_all = DataLoader.create_cat_vs_cat_dict(
