@@ -3,7 +3,7 @@ output_folder=ran_tables
 rm -r $output_folder
 mkdir $output_folder
 
-name="Outdoors, Silver Fish Equivalent per Item, Frisky Bitz, All Items Intact.md"
+name="Outdoors, Silver Fish Equivalent per Item, Frisky Bitz, All Items Intact"
 python analyze.py --output_type silver_equiv
 mv output.md "$output_folder/$name.md"
 
