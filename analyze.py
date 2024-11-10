@@ -845,6 +845,11 @@ def main():
         default=10,
         help="Number of iterations to simulate cat-on-cat interactions",
     )
+    parser.add_argument(
+        "--filter_by_na2_code",
+        action="store_true",
+        help="Filter results to only include items that are in the NA2 code",
+    )
 
     args = parser.parse_args()
     analyzer = NekoAtsumeAnalyzer(args)
@@ -872,6 +877,9 @@ def main():
         ]
     else:
         df = df[["Goodie Id", "Name", "Is Large", "Is in NA2 Code", "Value"]]
+    if args.filter_by_na2_code:
+        df = df.loc[df["Is in NA2 Code"]]
+        df = df.drop(columns=["Is in NA2 Code"])
     data = df.to_markdown(tablefmt="github", index=False)
     with open("output.md", "w") as f:
         content = args.__repr__()
