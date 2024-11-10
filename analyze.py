@@ -267,9 +267,7 @@ class NekoAtsumeAnalyzer:
             for playspace_id, data in playspace_dict.items():
                 cat_ids = data["cat_ids"]
                 draw_weights = data["draw_weights"]
-                cat_visit_prob_permyriad_pre_cat_on_cat = data[
-                    "cat_visit_prob_permyriad_pre_cat_on_cat"
-                ]
+                cat_visit_prob_permyriad = data["cat_visit_prob_permyriad"]
                 # Calculated in `calculate_cat_on_cat_interactions`
                 cat_on_cat_interactions = data.get(
                     "cat_on_cat_interactions", np.full(len(cat_ids), 100)
@@ -279,9 +277,7 @@ class NekoAtsumeAnalyzer:
                 draw_probability = (
                     interacted_draw_weights / interacted_draw_weights.sum()
                 )
-                per_cat_visit_prob = (
-                    draw_probability * cat_visit_prob_permyriad_pre_cat_on_cat
-                )
+                per_cat_visit_prob = draw_probability * cat_visit_prob_permyriad
 
                 playspace_visit_prob = per_cat_visit_prob.sum()
 
@@ -455,7 +451,7 @@ class NekoAtsumeAnalyzer:
             )
 
             # Calculate cat visit probabilities before interactions
-            cat_visit_prob_permyriad_pre_cat_on_cat = (
+            cat_visit_prob_permyriad = (
                 cat_visit_prob_by_food
                 * multiplier_goodie_charms
                 * (
@@ -502,7 +498,7 @@ class NekoAtsumeAnalyzer:
             self.all_data[item_id][playspace_id] = {
                 "cat_ids": cat_ids,
                 "draw_weights": draw_weights,
-                "cat_visit_prob_permyriad_pre_cat_on_cat": cat_visit_prob_permyriad_pre_cat_on_cat,
+                "cat_visit_prob_permyriad": cat_visit_prob_permyriad,
                 "per_cat_silver_rate": per_cat_silver_rate,
                 "conflicted_idxs": self.playspace_mappings["conflicted_idxs"][
                     playspace_id
