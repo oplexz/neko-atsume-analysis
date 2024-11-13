@@ -45,7 +45,6 @@ class DataLoader:
     @staticmethod
     def load_csv_data(filename: str) -> pd.DataFrame:
         df = pd.read_csv(filename)
-        df.columns = df.columns.str.strip()
         return df
 
     @staticmethod
@@ -165,10 +164,10 @@ class NekoAtsumeAnalyzer:
 
     def initialize_data(self):
         # Load all necessary data
-        self.item_to_name = DataLoader.load_json_data("data/item_to_name.json")
-        self.item_to_size = DataLoader.load_json_data("data/item_to_size.json")
+        self.item_to_name = DataLoader.load_json_data("data_inferred/item_to_name.json")
+        self.item_to_size = DataLoader.load_json_data("data_inferred/item_to_size.json")
         self.cat_vs_food = DataLoader.create_cat_vs_food_dict(
-            DataLoader.load_json_data("data/output_cat_vs_food.json"),
+            DataLoader.load_json_data("data/output_cats_vs_food.json"),
             self.args.food_type,
         )
         self.cat_vs_cat_all = DataLoader.create_cat_vs_cat_dict(
@@ -200,7 +199,7 @@ class NekoAtsumeAnalyzer:
             "item_id": dict(zip(df_playspace["Id"], df_playspace["ItemId"])),
             "charm": dict(zip(df_playspace["Id"], df_playspace["Charm"])),
             "conflicted_idxs": dict(
-                zip(df_playspace["Id"], df_playspace["ConflictIndices"])
+                zip(df_playspace["Id"], df_playspace["ConflictIndices"].fillna(""))
             ),
         }
 
@@ -446,7 +445,7 @@ class NekoAtsumeAnalyzer:
                 "per_cat_silver_rate": per_cat_silver_rate,
                 "conflicted_idxs": self.playspace_mappings["conflicted_idxs"][
                     playspace_id
-                ].strip(),
+                ],
             }
 
     def enumerate_constraints(self):
