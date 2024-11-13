@@ -806,7 +806,9 @@ def main():
     df = pd.DataFrame(sorted_items, columns=["GoodId", "Value"])
     df["Name"] = df["GoodId"].map(lambda x: analyzer.item_to_name.get(str(x), "-"))
     df["Is Large"] = df["GoodId"].map(lambda x: analyzer.item_to_size.get(str(x), "-"))
-    df["Is in NA2"] = df["GoodId"].map(lambda x: x in analyzer.item_existence_set)
+    df["Is in NA2"] = df["GoodId"].map(
+        lambda x: "Yes" if x in analyzer.item_existence_set else "-"
+    )
     df.rename(columns={"GoodId": "Goodie Id"}, inplace=True)
     if analyzer.is_custom_grouping:
         df["Is Indoor"] = df["Goodie Id"].map(
@@ -820,7 +822,7 @@ def main():
     else:
         df = df[["Goodie Id", "Name", "Is Large", "Is in NA2", "Value"]]
     if args.filter_by_na2:
-        df = df.loc[df["Is in NA2"]]
+        df = df.loc[df["Is in NA2"] == "Yes"]
         df = df.drop(columns=["Is in NA2"])
     data = df.to_markdown(tablefmt="github", index=False)
     with open("output.md", "w") as f:
