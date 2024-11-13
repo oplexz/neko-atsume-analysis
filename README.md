@@ -61,6 +61,7 @@ python analyze.py --group_def custom --items_of_interest_indoors 1 2 3 --items_o
 | `--items_of_interest_indoors` | List[int] | None | List of goodie IDs to analyze as indoor items. Only used when group_def is 'custom' |
 | `--items_of_interest_outdoors` | List[int] | None | List of goodie IDs to analyze as outdoor items. Only used when group_def is 'custom' |
 | `--num_iterations_for_cat_on_cat` | int | 10 | Number of iterations to simulate cat-on-cat interactions |
+| `--filter_by_na2` | bool | False | Filter results to only include items that are in NA2 |
 
 ## Output Types Explained
 
