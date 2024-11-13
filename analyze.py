@@ -735,6 +735,8 @@ class NekoAtsumeAnalyzer:
                     if cat_id == self.args.cat_id:
                         group_expected_values[group_id] += stay_rate_per_tick
                     continue
+                elif self.args.output_type == "stay_rate":
+                    expected_value = stay_rate_per_tick
                 else:
                     expected_value = None
 
@@ -805,6 +807,7 @@ def main():
             "silver_equiv",
             "gold_equiv",
             "cat_probability",
+            "stay_rate",
         ],
         default="gold_equiv",
         help="Type of output to generate. For 'cat_probability', shows the probability (0-1) of a specific cat appearing. Other options show the expected value in the selected unit over the specified total_duration_minutes",

@@ -54,7 +54,7 @@ python analyze.py --group_def custom --items_of_interest_indoors 1 2 3 --items_o
 | `--item_damage_state` | int | 0 | State of item damage:<br>0=Good<br>1=Broken<br>2=Fixed |
 | `--weather` | int | 0 | Weather condition:<br>0=None<br>1=Spring<br>2=Summer<br>4=Autumn<br>8=Winter<br>16=Snow<br>32=Burning |
 | `--is_indoor` | bool | False | If set, considers the yard as an indoor space. Ignored when group_def is 'custom' |
-| `--output_type` | str | "gold_equiv" | Type of output to generate. Options:<br>- `silver`: Silver fish<br>- `gold`: Gold fish<br>- `silver_equiv`: Silver fish equivalent<br>- `gold_equiv`: Gold fish equivalent<br>- `cat_probability`: Probability (0-1) of a specific cat appearing |
+| `--output_type` | str | "gold_equiv" | Type of output to generate. Options:<br>- `silver`: Silver fish<br>- `gold`: Gold fish<br>- `silver_equiv`: Silver fish equivalent<br>- `gold_equiv`: Gold fish equivalent<br>- `cat_probability`: Probability (0-1) of a specific cat appearing <br>- `stay_rate`: Summed probability (0-1) of any specific cat appearing over all playspaces |
 | `--total_duration_minutes` | int | 1440 | Duration in minutes over which to aggregate the selected output_type. Ignored when output_type is 'cat_probability' |
 | `--cat_id` | int | None | ID of the specific cat to analyze when output_type is 'cat_probability' |
 | `--group_def` | str | "item" | Defines how to group items where a single cat cannot appear simultaneously:<br>- `playspace`: Individual seats within goodies (Turns off the consideration of whether the same can appear at different places at the same time)<br>- `item`: Entire goodie<br>- `custom`: User-defined groups via items_of_interest arguments |
