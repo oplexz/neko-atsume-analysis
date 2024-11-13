@@ -53,7 +53,7 @@
     "Category": 1,
     "Toughness": 0,
     "Silver": 750,
-    "Gold": 50
+    "Gold": 15
   },
   {
     "Id": 100,
@@ -136,6 +136,22 @@
     "Gold": 15
   },
   {
+    "Id": 119,
+    "Attribute": 0,
+    "Category": 256,
+    "Toughness": 2200,
+    "Silver": 400,
+    "Gold": 0
+  },
+  {
+    "Id": 120,
+    "Attribute": 0,
+    "Category": 256,
+    "Toughness": 0,
+    "Silver": 0,
+    "Gold": 20
+  },
+  {
     "Id": 121,
     "Attribute": 1,
     "Category": 4,
@@ -150,6 +166,14 @@
     "Toughness": 8100,
     "Silver": 2500,
     "Gold": 50
+  },
+  {
+    "Id": 129,
+    "Attribute": 0,
+    "Category": 8,
+    "Toughness": 1300,
+    "Silver": 220,
+    "Gold": 0
   },
   {
     "Id": 152,
