@@ -35,16 +35,24 @@ class WeatherTypes:
     ALL = 4294967295
 
 
+cached_json_files = {}
 # Data loading and preprocessing
 class DataLoader:
     @staticmethod
     def load_json_data(filename: str) -> List[Dict]:
+        if filename in cached_json_files:
+            return cached_json_files[filename]
         with open(filename) as f:
-            return json.load(f)
+            data = json.load(f)
+            cached_json_files[filename] = data
+            return data
 
     @staticmethod
     def load_csv_data(filename: str) -> pd.DataFrame:
+        if filename in cached_json_files:
+            return cached_json_files[filename]
         df = pd.read_csv(filename)
+        cached_json_files[filename] = df
         return df
 
     @staticmethod
@@ -675,9 +683,10 @@ class NekoAtsumeAnalyzer:
                         stay_rate_per_tick * gold_equiv_rate_per_tick * total_ticks
                     )
                 elif self.args.output_type == "cat_probability":
-                    if cat_id == self.args.cat_id:
-                        group_expected_values[group_id] += stay_rate_per_tick
-                    continue
+                    if cat_id in self.args.cat_id:
+                        expected_value = stay_rate_per_tick
+                    else:
+                        expected_value = 0
                 elif self.args.output_type == "stay_rate":
                     expected_value = stay_rate_per_tick
                 else:
@@ -764,7 +773,8 @@ def main():
     parser.add_argument(
         "--cat_id",
         type=int,
-        help="ID of the specific cat to analyze when output_type is 'cat_probability'",
+        nargs="+",
+        help="ID(s) of the specific cat to analyze when output_type is 'cat_probability'",
     )
     parser.add_argument(
         "--group_def",
