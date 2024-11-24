@@ -38,7 +38,7 @@ Namespace(food_type=2, item_damage_state=0, weather=0, is_indoor=False, output_t
 |         155 | Royal Bed                                             | False      | -           | 312.77    |
 |         157 | Navy-blue Cube                                        | False      | -           | 311.709   |
 |         239 | Doughnut Tunnel                                       | True       | -           | 302.138   |
-|         124 | Dino Deluxe                                           | True       | -           | 294.818   |
+|         124 | Dino Deluxe                                           | True       | Yes         | 294.818   |
 |         232 | Tunnel (I Piece)                                      | True       | Yes         | 294.459   |
 |         306 | Golden Fish Statue                                    | False      | Yes         | 287.972   |
 |         128 | Silk Crepe Pillow                                     | False      | -           | 285.692   |
@@ -70,13 +70,14 @@ Namespace(food_type=2, item_damage_state=0, weather=0, is_indoor=False, output_t
 |         190 | Melon Coccoon                                         | False      | -           | 223.035   |
 |         130 | Maple Pillow                                          | False      | -           | 219.037   |
 |         111 | Temari Ball                                           | False      | Yes         | 218.439   |
-|         107 | Soccer Ball                                           | False      | -           | 218.438   |
+|         107 | Soccer Ball                                           | False      | Yes         | 218.438   |
 |         175 | Mister Penguin                                        | False      | -           | 217.875   |
 |         188 | Plum Coccoon                                          | False      | Yes         | 217.748   |
 |         129 | Sakura Pillow                                         | False      | Yes         | 214.839   |
 |         100 | Baseball                                              | False      | Yes         | 208.228   |
 |         276 | Scratching Log                                        | False      | -           | 207.62    |
 |         210 | Tent (Blizzard)                                       | False      | -           | 207.209   |
+|         307 | -                                                     | -          | -           | 204.329   |
 |         142 | Cushion (Green)                                       | False      | -           | 202.489   |
 |         162 | Biscuit Mat                                           | False      | -           | 201.532   |
 |         178 | Burger Cushion                                        | False      | Yes         | 199.97    |
@@ -152,7 +153,7 @@ Namespace(food_type=2, item_damage_state=0, weather=0, is_indoor=False, output_t
 |         258 | Twisty Rail                                           | True       | Yes         | 159.34    |
 |         137 | Cypress Mat                                           | False      | -           | 159.015   |
 |         134 | Grass Cushion (Green)                                 | False      | -           | 158.418   |
-|         211 | Tent (Pyramid)                                        | False      | -           | 158.138   |
+|         211 | Tent (Pyramid)                                        | False      | Yes         | 158.138   |
 |         279 | Rice Kettle                                           | False      | -           | 157.474   |
 |         173 | Plum Cushion (White)                                  | False      | -           | 157.294   |
 |         292 | Wooden Pail                                           | False      | -           | 157.095   |
@@ -171,10 +172,11 @@ Namespace(food_type=2, item_damage_state=0, weather=0, is_indoor=False, output_t
 |         274 | Scratching Board                                      | False      | Yes         | 151.916   |
 |         201 | Hammock (Yellow)                                      | False      | -           | 151.749   |
 |         148 | Lucky Cushion                                         | False      | -           | 151.748   |
-|         250 | Mister Dragonfly                                      | False      | -           | 150.08    |
+|         308 | -                                                     | -          | -           | 151.748   |
+|         250 | Mister Dragonfly                                      | False      | Yes         | 150.08    |
 |         296 | Glass Vase                                            | False      | Yes         | 149.501   |
 |         116 | Shopping Box (Large)                                  | False      | Yes         | 148.636   |
-|         288 | Planter                                               | False      | -           | 147.758   |
+|         288 | Planter                                               | False      | Yes         | 147.758   |
 |         144 | Cushion (B&W)                                         | False      | -           | 147.623   |
 |         164 | Cool Aluminum Pad                                     | False      | -           | 146.155   |
 |         202 | Hammock (Pink)                                        | False      | -           | 146.153   |

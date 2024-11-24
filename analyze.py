@@ -36,6 +36,8 @@ class WeatherTypes:
 
 
 cached_json_files = {}
+
+
 # Data loading and preprocessing
 class DataLoader:
     @staticmethod
@@ -384,9 +386,9 @@ class NekoAtsumeAnalyzer:
                 [self.cat_vs_food[cat_id] for cat_id in cat_ids]
             )
             multiplier_goodie_charms = self.playspace_mappings["charm"][playspace_id]
-            multiplier_weather_by_playspace_delta = self.playspace_to_weather_mul[
-                playspace_id
-            ]
+            multiplier_weather_by_playspace_delta = self.playspace_to_weather_mul.get(
+                playspace_id, 0
+            )
 
             if (
                 self.is_custom_grouping

@@ -1,4 +1,4 @@
-Id,ItemId,Charm,Niboshi,GomenSleep,Grooming,Z,ConflictIndices,ActionNames,ActionIds,ActionWeights,ActionNames2,ActionIds2,ActionWeights2,GoodsAnimeId,GoodsAnimeId2
+Id,ItemId,Charm,Niboshi,Gomenne,Grooming,Z,ConflictIndices,ActionNames,ActionIds,ActionWeights,ActionNames2,ActionIds2,ActionWeights2,GoodsAnimeId,GoodsAnimeId2
 10,1,100,100,False,False,0,"","","","","","","","",""
 20,2,90,100,False,False,0,"","","","","","","","",""
 30,3,90,100,False,False,0,"","","","","","","","",""
@@ -279,7 +279,7 @@ Id,ItemId,Charm,Niboshi,GomenSleep,Grooming,Z,ConflictIndices,ActionNames,Action
 2790,279,100,100,True,True,0,"","00kihon_suwari;00kihon_suwari;00kihon_kaodashi;06jarashi_mushi;01ball_base","0;1;0;1;1","","","","","0;0;1;1;2",""
 2800,280,100,120,True,True,0,"","10hachi_ueki","0","","","","","",""
 2810,281,100,80,True,True,0,"","00kihon_suwari;00kihon_tachi;00kihon_tachi;10hachi_nabe","0;0;1;0","","","","","0;0;0;1",""
-2811,281,100,75,True,True,0,"","00kihon_nesoberi;112","0;1","","","","","",""
+2811,281,100,75,True,True,-1,"","00kihon_nesoberi","0","","","","","",""
 2820,282,100,80,True,True,0,"","10hachi_ueki","0","","","","","",""
 2830,283,100,80,True,True,0,"","10hachi_ueki","0","","","","","",""
 2840,284,100,80,True,True,0,"","10hachi_ueki","0","","","","","",""
@@ -307,5 +307,8 @@ Id,ItemId,Charm,Niboshi,GomenSleep,Grooming,Z,ConflictIndices,ActionNames,Action
 3040,304,100,100,True,True,0,"","01ball_gum_break","1","","neko_walk","1","","",""
 3050,305,100,100,True,True,0,"","00kihon_kaodashi","1","","","","","",""
 3060,306,100,100,True,True,0,"","06jarashi_mushi","2","","","","","",""
+3070,307,100,100,True,True,0,"1","00kihon_suwari","0","","","","","",""
+3071,307,100,100,True,True,0,"0","00kihon_suwari","0","","","","","1",""
+3080,308,100,100,True,True,0,"","00kihon_nesoberi;00kihon_nesoberi;00kihon_nesoberi;00kihon_suwari;00kihon_suwari","0;1;2;0;1","","","","","",""
 50000,5000,100,100,False,False,0,"","","","","","","","",""
 50010,5001,100,100,False,False,0,"","00kihon_nesoberi;00kihon_nesoberi;00kihon_nesoberi;00kihon_suwari;00kihon_tachi;00kihon_tachi","0;1;2;0;0;1","","","","","",""

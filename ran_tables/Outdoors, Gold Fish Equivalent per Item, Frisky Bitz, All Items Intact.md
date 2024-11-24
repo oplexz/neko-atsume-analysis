@@ -36,7 +36,7 @@ Namespace(food_type=2, item_damage_state=0, weather=0, is_indoor=False, output_t
 |         157 | Navy-blue Cube                                        | False      | -           |  9.529    |
 |         239 | Doughnut Tunnel                                       | True       | -           |  9.20334  |
 |         232 | Tunnel (I Piece)                                      | True       | Yes         |  9.07597  |
-|         124 | Dino Deluxe                                           | True       | -           |  8.98072  |
+|         124 | Dino Deluxe                                           | True       | Yes         |  8.98072  |
 |         238 | Cow Tunnel                                            | True       | -           |  8.86414  |
 |         161 | Bamboo House                                          | False      | -           |  8.84849  |
 |         200 | Giant Cushion (White)                                 | True       | -           |  8.83962  |
@@ -66,9 +66,10 @@ Namespace(food_type=2, item_damage_state=0, weather=0, is_indoor=False, output_t
 |         270 | Kiddy Rucksack (Blue)                                 | False      | -           |  6.23846  |
 |         187 | Chestnut Cushion                                      | False      | -           |  6.19562  |
 |         130 | Maple Pillow                                          | False      | -           |  6.19054  |
-|         107 | Soccer Ball                                           | False      | -           |  6.15308  |
+|         107 | Soccer Ball                                           | False      | Yes         |  6.15308  |
 |         131 | Snowy Pillow                                          | False      | -           |  6.15018  |
 |         193 | Egg Bed (White)                                       | False      | -           |  6.1109   |
+|         307 | -                                                     | -          | -           |  6.10556  |
 |         129 | Sakura Pillow                                         | False      | Yes         |  6.07789  |
 |         175 | Mister Penguin                                        | False      | -           |  6.02161  |
 |         178 | Burger Cushion                                        | False      | Yes         |  6.02053  |
@@ -158,7 +159,7 @@ Namespace(food_type=2, item_damage_state=0, weather=0, is_indoor=False, output_t
 |         300 | Cat Macaron (Pink)                                    | False      | Yes         |  4.7219   |
 |         118 | Cardboard Truck                                       | False      | Yes         |  4.71761  |
 |         165 | Aluminium Bowl                                        | False      | -           |  4.70504  |
-|         250 | Mister Dragonfly                                      | False      | -           |  4.70038  |
+|         250 | Mister Dragonfly                                      | False      | Yes         |  4.70038  |
 |         275 | Scratching Post                                       | False      | Yes         |  4.68864  |
 |         215 | Warm Sock                                             | False      | -           |  4.6828   |
 |         279 | Rice Kettle                                           | False      | -           |  4.68225  |
@@ -166,6 +167,7 @@ Namespace(food_type=2, item_damage_state=0, weather=0, is_indoor=False, output_t
 |         201 | Hammock (Yellow)                                      | False      | -           |  4.66812  |
 |         133 | Grass Cushion (Navy)                                  | False      | -           |  4.66133  |
 |         148 | Lucky Cushion                                         | False      | -           |  4.6241   |
+|         308 | -                                                     | -          | -           |  4.6241   |
 |         116 | Shopping Box (Large)                                  | False      | Yes         |  4.62231  |
 |         274 | Scratching Board                                      | False      | Yes         |  4.60764  |
 |         219 | Cozy Blanket (Red)                                    | False      | -           |  4.60576  |
@@ -175,12 +177,12 @@ Namespace(food_type=2, item_damage_state=0, weather=0, is_indoor=False, output_t
 |         202 | Hammock (Pink)                                        | False      | -           |  4.57829  |
 |         297 | Jumbo Glass Mug                                       | False      | Yes         |  4.55998  |
 |         258 | Twisty Rail                                           | True       | Yes         |  4.54839  |
-|         288 | Planter                                               | False      | -           |  4.52325  |
+|         288 | Planter                                               | False      | Yes         |  4.52325  |
 |         205 | -                                                     | -          | -           |  4.52088  |
 |         206 | -                                                     | -          | -           |  4.4754   |
 |         136 | Pinewood Mat                                          | False      | -           |  4.45691  |
 |         256 | Busy Bee                                              | False      | Yes         |  4.43905  |
-|         211 | Tent (Pyramid)                                        | False      | -           |  4.41959  |
+|         211 | Tent (Pyramid)                                        | False      | Yes         |  4.41959  |
 |         299 | Wood Pail                                             | False      | -           |  4.41801  |
 |         149 | Shroom House (Red)                                    | False      | -           |  4.40047  |
 |         209 | Tent (Modern Red)                                     | False      | -           |  4.39816  |

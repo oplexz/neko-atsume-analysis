@@ -80,6 +80,14 @@
     "Gold": 0
   },
   {
+    "Id": 107,
+    "Attribute": 0,
+    "Category": 2,
+    "Toughness": 2700,
+    "Silver": 0,
+    "Gold": 10
+  },
+  {
     "Id": 108,
     "Attribute": 0,
     "Category": 2,
@@ -168,6 +176,14 @@
     "Gold": 50
   },
   {
+    "Id": 124,
+    "Attribute": 1,
+    "Category": 4,
+    "Toughness": 5400,
+    "Silver": 999,
+    "Gold": 0
+  },
+  {
     "Id": 129,
     "Attribute": 0,
     "Category": 8,
@@ -224,6 +240,14 @@
     "Gold": 10
   },
   {
+    "Id": 211,
+    "Attribute": 0,
+    "Category": 512,
+    "Toughness": 1300,
+    "Silver": 190,
+    "Gold": 0
+  },
+  {
     "Id": 222,
     "Attribute": 1,
     "Category": 512,
@@ -269,6 +293,14 @@
     "Category": 32,
     "Toughness": 800,
     "Silver": 80,
+    "Gold": 0
+  },
+  {
+    "Id": 250,
+    "Attribute": 0,
+    "Category": 32,
+    "Toughness": 1300,
+    "Silver": 120,
     "Gold": 0
   },
   {
@@ -344,7 +376,31 @@
     "Gold": 20
   },
   {
+    "Id": 288,
+    "Attribute": 0,
+    "Category": 256,
+    "Toughness": 0,
+    "Silver": 130,
+    "Gold": 0
+  },
+  {
     "Id": 289,
+    "Attribute": 0,
+    "Category": 256,
+    "Toughness": 2200,
+    "Silver": 60,
+    "Gold": 0
+  },
+  {
+    "Id": 290,
+    "Attribute": 0,
+    "Category": 256,
+    "Toughness": 2200,
+    "Silver": 60,
+    "Gold": 0
+  },
+  {
+    "Id": 291,
     "Attribute": 0,
     "Category": 256,
     "Toughness": 2200,

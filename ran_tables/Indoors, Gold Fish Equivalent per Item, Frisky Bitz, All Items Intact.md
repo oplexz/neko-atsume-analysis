@@ -44,7 +44,7 @@ Namespace(food_type=2, item_damage_state=0, weather=0, is_indoor=True, output_ty
 |         200 | Giant Cushion (White)                                 | True       | -           | 15.137    |
 |         293 | Snow Sled                                             | False      | -           | 15.1165   |
 |         237 | Fish-stick Tunnel                                     | False      | -           | 15.0669   |
-|         124 | Dino Deluxe                                           | True       | -           | 15.0322   |
+|         124 | Dino Deluxe                                           | True       | Yes         | 15.0322   |
 |         199 | Giant Cushion                                         | False      | -           | 14.9203   |
 |         212 | Mushroom House                                        | False      | -           | 13.9197   |
 |         180 | -                                                     | -          | -           | 12.7585   |
@@ -60,12 +60,13 @@ Namespace(food_type=2, item_damage_state=0, weather=0, is_indoor=True, output_ty
 |         287 | Kokeshi Pot (Spring)                                  | False      | -           | 10.2758   |
 |         128 | Silk Crepe Pillow                                     | False      | -           | 10.273    |
 |         286 | Kokeshi Pot (Flow)                                    | False      | -           | 10.2459   |
+|         307 | -                                                     | -          | -           | 10.0574   |
 |         178 | Burger Cushion                                        | False      | Yes         |  9.98036  |
 |         195 | Egg Bed (Pink)                                        | False      | -           |  9.86544  |
 |         298 | Cowboy Hat                                            | False      | Yes         |  9.81343  |
 |         281 | Lacquered Bowl                                        | False      | -           |  9.76921  |
 |         130 | Maple Pillow                                          | False      | -           |  9.70301  |
-|         107 | Soccer Ball                                           | False      | -           |  9.61405  |
+|         107 | Soccer Ball                                           | False      | Yes         |  9.61405  |
 |         129 | Sakura Pillow                                         | False      | Yes         |  9.53532  |
 |         270 | Kiddy Rucksack (Blue)                                 | False      | -           |  9.52329  |
 |         187 | Chestnut Cushion                                      | False      | -           |  9.44452  |
@@ -144,7 +145,7 @@ Namespace(food_type=2, item_damage_state=0, weather=0, is_indoor=True, output_ty
 |         110 | Toy Capsule                                           | False      | -           |  8.08642  |
 |         292 | Wooden Pail                                           | False      | -           |  8.0756   |
 |         163 | Thick Cooling Pad                                     | False      | -           |  8.05425  |
-|         250 | Mister Dragonfly                                      | False      | -           |  8.04364  |
+|         250 | Mister Dragonfly                                      | False      | Yes         |  8.04364  |
 |         300 | Cat Macaron (Pink)                                    | False      | Yes         |  8.01777  |
 |         301 | Cat Macaron (Green)                                   | False      | -           |  7.99879  |
 |         220 | Cozy Blanket (Yellow)                                 | False      | -           |  7.99757  |
@@ -169,6 +170,7 @@ Namespace(food_type=2, item_damage_state=0, weather=0, is_indoor=True, output_ty
 |         277 | Fruit Basket                                          | False      | Yes         |  7.77488  |
 |         243 | Shell Tunnel (White)                                  | False      | -           |  7.75945  |
 |         148 | Lucky Cushion                                         | False      | -           |  7.74215  |
+|         308 | -                                                     | -          | -           |  7.74215  |
 |         241 | Shell Tunnel (Pink)                                   | False      | -           |  7.70306  |
 |         296 | Glass Vase                                            | False      | Yes         |  7.69811  |
 |         205 | -                                                     | -          | -           |  7.68981  |
@@ -176,7 +178,7 @@ Namespace(food_type=2, item_damage_state=0, weather=0, is_indoor=True, output_ty
 |         279 | Rice Kettle                                           | False      | -           |  7.68045  |
 |         299 | Wood Pail                                             | False      | -           |  7.64919  |
 |         249 | Mister Mouse                                          | False      | -           |  7.63132  |
-|         288 | Planter                                               | False      | -           |  7.60164  |
+|         288 | Planter                                               | False      | Yes         |  7.60164  |
 |         206 | -                                                     | -          | -           |  7.57868  |
 |         219 | Cozy Blanket (Red)                                    | False      | -           |  7.57564  |
 |         256 | Busy Bee                                              | False      | Yes         |  7.56591  |
@@ -203,7 +205,7 @@ Namespace(food_type=2, item_damage_state=0, weather=0, is_indoor=True, output_ty
 |         144 | Cushion (B&W)                                         | False      | -           |  6.88169  |
 |         283 | Pickling Pot                                          | False      | -           |  6.85953  |
 |         203 | Hammock (Woven)                                       | False      | -           |  6.85532  |
-|         211 | Tent (Pyramid)                                        | False      | -           |  6.8538   |
+|         211 | Tent (Pyramid)                                        | False      | Yes         |  6.8538   |
 |         284 | Honey Pot                                             | False      | -           |  6.78066  |
 |         248 | Fluff-thing Teaser                                    | False      | -           |  6.35164  |
 |         272 | Paper Bag                                             | False      | Yes         |  6.28604  |

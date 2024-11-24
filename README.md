@@ -1,6 +1,6 @@
 # Neko Atsume Analysis
 
-A tool for optimizing your Neko Atsume yard setup to maximize fish earnings and cat visits. Algorithms based on Neko Atsume 2 V1.0.0. Data based on Neko Atsume 2 V1.2.0.
+A tool for optimizing your Neko Atsume yard setup to maximize fish earnings and cat visits. Algorithms based on Neko Atsume 2 V1.0.0. Data based on Neko Atsume 2 V1.3.1.
 
 ## Description
 
