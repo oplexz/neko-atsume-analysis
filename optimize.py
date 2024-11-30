@@ -473,55 +473,61 @@ def mutate_yard(yard: Yard) -> Yard:
     [outdoor_large, removed_outdoor_large] = pick(outdoor_large)
     [outdoor_small, removed_outdoor_small] = pick(outdoor_small)
 
-    indoor_large = set(indoor_large)
-    indoor_small = set(indoor_small)
-    outdoor_large = set(outdoor_large)
-    outdoor_small = set(outdoor_small)
-
     used_items = set(yard.used)
     for x in [removed_indoor_large, removed_indoor_small, removed_outdoor_large, removed_outdoor_small]:
         if x is not None:
             used_items.remove(x)
 
-    if removed_indoor_large is not None:
+    guaranteed_modified = randint(0, 3)
+    # Removed something and not mutate to -1 large item OR mutate to +1 large item
+    if removed_indoor_large is not None and not (random() < 0.1 and len(SMALL_ITEMS) > PLACES_INDOOR + PLACES_OUTDOOR) or (random() < 0.1 and len(LARGE_ITEMS) >= 2):
         while True:
             new_item = choice(LARGE_ITEMS)
-            if random() < 0.5:
+            if guaranteed_modified != 0 and random() < 0.7:
                 new_item = removed_indoor_large
             if new_item not in used_items:
                 break
-        indoor_large.add(new_item)
+            
+        indoor_large.append(new_item)
         used_items.add(new_item)
 
     if removed_indoor_small is not None:
-        while True:
-            new_item = choice(SMALL_ITEMS)
-            if random() < 0.5:
-                new_item = removed_indoor_small
-            if new_item not in used_items:
-                break
-        indoor_small.add(new_item)
-        used_items.add(new_item)
+        while len(indoor_small) + len(indoor_large) * 2 < PLACES_INDOOR:
+            while True:
+                new_item = choice(SMALL_ITEMS)
+                if guaranteed_modified != 1 and random() < 0.7:
+                    new_item = removed_indoor_small
+                if new_item not in used_items:
+                    break
+            indoor_small.append(new_item)
+            used_items.add(new_item)
+    while len(indoor_small) + len(indoor_large) * 2 > PLACES_INDOOR:
+        [indoor_small, removed] = pick(indoor_small)
+        used_items.remove(removed)
 
-    if removed_outdoor_large is not None:
+    if removed_outdoor_large is not None and not (random() < 0.1 and len(SMALL_ITEMS) > PLACES_INDOOR + PLACES_OUTDOOR) or (random() < 0.1 and len(LARGE_ITEMS) >= 2):
         while True:
             new_item = choice(LARGE_ITEMS)
-            if random() < 0.5:
+            if guaranteed_modified != 2 and random() < 0.7:
                 new_item = removed_outdoor_large
             if new_item not in used_items:
                 break
-        outdoor_large.add(new_item)
+        outdoor_large.append(new_item)
         used_items.add(new_item)
 
     if removed_outdoor_small is not None:
-        while True:
-            new_item = choice(SMALL_ITEMS)
-            if random() < 0.5:
-                new_item = removed_outdoor_small
-            if new_item not in used_items:
-                break
-        outdoor_small.add(new_item)
-        used_items.add(new_item)
+        while len(outdoor_small) + len(outdoor_large) * 2 < PLACES_OUTDOOR:
+            while True:
+                new_item = choice(SMALL_ITEMS)
+                if guaranteed_modified != 3 and random() < 0.7:
+                    new_item = removed_outdoor_small
+                if new_item not in used_items:
+                    break
+            outdoor_small.append(new_item)
+            used_items.add(new_item)
+    while len(outdoor_small) + len(outdoor_large) * 2 > PLACES_OUTDOOR:
+        [outdoor_small, removed] = pick(outdoor_small)
+        used_items.remove(removed)
 
     if random() < 0.7:
         food_type_indoor = yard.food_type_indoor
@@ -532,6 +538,11 @@ def mutate_yard(yard: Yard) -> Yard:
         food_type_outdoor = yard.food_type_outdoor
     else:
         food_type_outdoor = choice(ALLOWED_FOODS)
+
+    indoor_large = set(indoor_large)
+    indoor_small = set(indoor_small)
+    outdoor_large = set(outdoor_large)
+    outdoor_small = set(outdoor_small)
 
     return create_yard(food_type_indoor, indoor_large, indoor_small, food_type_outdoor, outdoor_large, outdoor_small)
 
