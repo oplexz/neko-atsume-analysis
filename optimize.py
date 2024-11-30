@@ -96,21 +96,26 @@ for x in [
 
 ALLOWED_FOODS = range(1, 8)
 # ALLOWED_FOODS = [7]
-# Penalty for expensive foods, eg. cost to buy them (assuming with the 15% bulk discount) 
+ALLOWED_FOODS_INDOOR = ALLOWED_FOODS # in case you want to cheapen out since Tubbs
+ALLOWED_FOODS_OUTDOOR = ALLOWED_FOODS
+
+FOOD_PENALTY = [0 for _ in range(0, 8)]
+# Penalty for expensive foods, eg. cost to buy them (assuming with the 15% bulk discount)
 # (cost per bulk (/50 for silver -> gold) / 3 (items per bulk) * 24 hours / hours per food)
-FOOD_PENALTY = [-9999, 0, 30/50 /3 * 24/6, 7/3 * 24/3, 17/3 * 24/3, 30/3 * 24/3, 5 * 24/3, 15 * 24] 
-# FOOD_PENALTY = [0 for _ in range(0, 8)]
+FOOD_PENALTY = [-9999, 0, 30/50 /3 * 24/6, 7/3 * 24/3, 17/3 * 24/3, 30/3 * 24/3, 5 * 24/3, 15 * 24]
+
 BASE_ARGS = SimpleNamespace(**{
-    "food_type": ALLOWED_FOODS[0], 
-    "item_damage_state": 0,
+    "food_type_indoor": ALLOWED_FOODS_INDOOR[0],
+    "food_type_outdoor": ALLOWED_FOODS_OUTDOOR[0],
+    "item_damage_state": 2,
     "output_type": 'gold_equiv',
     "cat_id": [cat_name_to_id[cat_name] for cat_name in cats_to_analyze],
-    "total_duration_minutes": 1440, 
+    "total_duration_minutes": 1440,
     "group_def": 'custom',
-    "items_of_interest_indoors": [], 
-    "items_of_interest_outdoors": [], 
-    "weather": 0, 
-    "num_iterations_for_cat_on_cat": 10, 
+    "items_of_interest_indoors": [],
+    "items_of_interest_outdoors": [],
+    "weather": 0,
+    "num_iterations_for_cat_on_cat": 10,
 })
 
 analyzer = NekoAtsumeAnalyzer(BASE_ARGS)
@@ -136,22 +141,23 @@ MUTATION_OFFSPRING_RATE = 0.5
 REPOPULATION_SIZE = round(POOL_SIZE * 0.25)
 
 class Yard:
-    def __init__(self, food_type: int, indoor_large: set[int], indoor_small: set[int], outdoor_large: set[int], outdoor_small: set[int], value: float):
-        self.food_type = food_type
+    def __init__(self, food_type_indoor: int, indoor_large: set[int], indoor_small: set[int],  food_type_outdoor: int, outdoor_large: set[int], outdoor_small: set[int], value: float):
+        self.food_type_indoor = food_type_indoor
         self.indoor_large = indoor_large
         self.indoor_small = indoor_small
+        self.food_type_outdoor = food_type_outdoor
         self.outdoor_large = outdoor_large
         self.outdoor_small = outdoor_small
         self.value = value
 
-        self.hash = hash((self.food_type, tuple(self.indoor_large), tuple(self.indoor_small), tuple(self.outdoor_large), tuple(self.outdoor_small)))
+        self.hash = hash((self.food_type_indoor, self.food_type_outdoor, tuple(self.indoor_large), tuple(self.indoor_small), tuple(self.outdoor_large), tuple(self.outdoor_small)))
 
         if len(self.indoor_large) > 1 or len(self.indoor_small) + len(self.indoor_large) * 2 != PLACES_INDOOR:
             raise ValueError(f"indoor_large={self.indoor_large}, indoor_small={self.indoor_small}")
-        
+
         if len(self.outdoor_large) > 1 or len(self.outdoor_small) + len(self.outdoor_large) * 2 != PLACES_OUTDOOR:
             raise ValueError(f"outdoor_large={self.outdoor_large}, outdoor_small={self.outdoor_small}")
-        
+
         self.used = set(self.indoor_large)
         self.used.update(self.indoor_small)
         self.used.update(self.outdoor_large)
@@ -160,13 +166,13 @@ class Yard:
             raise ValueError(f"used={self.used}, indoor_large={self.indoor_large}, indoor_small={self.indoor_small}, outdoor_large={self.outdoor_large}, outdoor_small={self.outdoor_small}")
 
     def __str__(self) -> str:
-        return f"Yard(indoor_large={self.indoor_large}, indoor_small={self.indoor_small}, outdoor_large={self.outdoor_large}, outdoor_small={self.outdoor_small}, value={self.value})"    
+        return f"Yard(indoor_large={self.indoor_large}, indoor_small={self.indoor_small}, outdoor_large={self.outdoor_large}, outdoor_small={self.outdoor_small}, value={self.value})"
 
     def __hash__(self) -> int:
         return self.hash
 
     def __eq__(self, other) -> bool:
-        return self.indoor_large == other.indoor_large and self.indoor_small == other.indoor_small and self.outdoor_large == other.outdoor_large and self.outdoor_small == other.outdoor_small and self.food_type == other.food_type
+        return self.indoor_large == other.indoor_large and self.indoor_small == other.indoor_small and self.outdoor_large == other.outdoor_large and self.outdoor_small == other.outdoor_small and self.food_type_indoor == other.food_type_indoor and self.food_type_outdoor == other.food_type_outdoor
 
 def main():
     total_start_time = time()
@@ -200,20 +206,22 @@ def main():
 
         print(f"Iteration #{iteration} iteration took {round(end_time - start_time, 2)}s total time so far {round(end_time - total_start_time, 2)}s")
         print("Best yard", best.indoor_large, best.indoor_small, best.outdoor_large, best.outdoor_small)
-        print("  Food:", analyzer.item_to_name[str(best.food_type)])
         print("  Items", sorted(list(best.indoor_large) + list(best.indoor_small) + list(best.outdoor_large) + list(best.outdoor_small)))
         print("  Value: ", best.value)
+        print("  Indoor food:", analyzer.item_to_name[str(best.food_type_indoor)], " (penalty:", round(FOOD_PENALTY[best.food_type_indoor], 2), ")")
         print("  Indoor:", list(analyzer.item_to_name[str(i)] for i in list(best.indoor_large) + list(best.indoor_small)))
+        print("  Outdoor food:", analyzer.item_to_name[str(best.food_type_outdoor)], " (penalty:", round(FOOD_PENALTY[best.food_type_outdoor], 2), ")")
         print("  Outdoor:", list(analyzer.item_to_name[str(i)] for i in list(best.outdoor_large) + list(best.outdoor_small)))
 
         if iteration % 10 == 0:
             for type in ["gold_equiv", "silver_equiv", "gold", "silver"]:
-                value = get_value(best.food_type, best.indoor_large, best.indoor_small, best.outdoor_large, best.outdoor_small, type)
+                value = get_value(best.food_type_indoor, best.indoor_large, best.indoor_small, best.food_type_outdoor, best.outdoor_large, best.outdoor_small, type)
                 print(f"  Value for {type}: {value}")
 
         analyze_command = "python analyze.py "
         analyze_command += f"--output_type {BASE_ARGS.output_type} "
-        analyze_command += f"--food_type {best.food_type} "
+        analyze_command += f"--food_type_indoor {best.food_type_indoor} "
+        analyze_command += f"--food_type_outdoor {best.food_type_outdoor} "
         analyze_command += f"--group_def {BASE_ARGS.group_def} "
         if BASE_ARGS.total_duration_minutes != 1440:
             analyze_command += f"--total_duration_minutes {BASE_ARGS.total_duration_minutes} "
@@ -262,7 +270,7 @@ def create_offspring_and_mutate(pool: set[Yard], winners: list[Yard]) -> list[Ya
             for left, right in zip(leftHalf, rightHalf)
         ]
         futures.extend([
-            executor.submit(inside_outside_crossover, left, right)
+            executor.submit(indoor_outdoor_crossover, left, right)
             for left, right in zip(leftHalf, rightHalf)
         ])
 
@@ -283,7 +291,7 @@ def create_offspring_and_mutate(pool: set[Yard], winners: list[Yard]) -> list[Ya
     else:
         for left, right in zip(leftHalf, rightHalf):
             offspring.extend(crossover_mutation(left, right))
-            offspring.extend(inside_outside_crossover(left, right))
+            offspring.extend(indoor_outdoor_crossover(left, right))
 
         for result in offspring:
             if random() < MUTATION_OFFSPRING_RATE:
@@ -307,13 +315,14 @@ def generate_yard() -> Yard:
     outdoor_large = generate_large(used, select_large_outdoor)
     outdoor_small = generate_small(used, select_large_outdoor, PLACES_OUTDOOR)
 
-    food_type = choice(ALLOWED_FOODS)
+    food_type_indoor = choice(ALLOWED_FOODS_INDOOR)
+    food_type_outdoor = choice(ALLOWED_FOODS_OUTDOOR)
 
-    return create_yard(food_type, indoor_large, indoor_small, outdoor_large, outdoor_small)
+    return create_yard(food_type_indoor, indoor_large, indoor_small, food_type_outdoor, outdoor_large, outdoor_small)
 
-def create_yard(food: int, indoor_large: set[int], indoor_small: set[int], outdoor_large: set[int], outdoor_small: set[int]) -> Yard:
-    value = get_value(food, indoor_large, indoor_small, outdoor_large, outdoor_small)
-    return Yard(food, indoor_large, indoor_small, outdoor_large, outdoor_small, value)
+def create_yard(food_indoor: int, indoor_large: set[int], indoor_small: set[int], food_outdoor: int, outdoor_large: set[int], outdoor_small: set[int]) -> Yard:
+    value = get_value(food_indoor, indoor_large, indoor_small, food_outdoor, outdoor_large, outdoor_small)
+    return Yard(food_indoor, indoor_large, indoor_small, food_outdoor, outdoor_large, outdoor_small, value)
 
 def generate_large(used: set[int], select_large: bool) -> set[int]:
     if select_large:
@@ -330,13 +339,14 @@ def generate_small(used: set[int], select_large: bool, max_amount_in_area: int) 
         items.add(item)
     return items
 
-def get_value(food_type: int, a: set[int], b: set[int], c: set[int], d: set[int], type: str | None = None):
+def get_value(food_type_indoor: int, a: set[int], b: set[int], food_type_outdoor: int, c: set[int], d: set[int], type: str | None = None):
     args = BASE_ARGS
     if type:
         args = copy(args)
         args.output_type = type
 
-    args.food_type = food_type
+    args.food_type_indoor = food_type_indoor
+    args.food_type_outdoor = food_type_outdoor
     args.items_of_interest_indoors = list(a) + list(b)
     args.items_of_interest_outdoors = list(c) + list(d)
 
@@ -354,7 +364,8 @@ def get_value(food_type: int, a: set[int], b: set[int], c: set[int], d: set[int]
         #     max_food = max(max_food, resultsbase['Your Yard Total'])
 
         # Penalty is only applied when getting value for set type
-        return results['Your Yard Total'] - max_food - FOOD_PENALTY[food_type]
+        return (results['Your Yard Total'] - max_food - FOOD_PENALTY[food_type_indoor] - FOOD_PENALTY[food_type_outdoor])
+        # + (get_value(food_type_indoor, a, b, food_type_outdoor, c, d, 'gold_equiv') / 10000) # In case you still want sorting for cat_probability
     return results['Your Yard Total']
 
 def k_tournament(yards: set[Yard]) -> set[Yard]:
@@ -392,30 +403,41 @@ def crossover_mutation(left: Yard, right: Yard) -> list[Yard]:
         return []
     
     if random() < 0.5:
-        [a_food, b_food] = [right.food_type, left.food_type]
+        [a_food_indoor, b_food_indoor] = [right.food_type_indoor, left.food_type_indoor]
     else:
-        [a_food, b_food] = [left.food_type, right.food_type]
+        [a_food_indoor, b_food_indoor] = [left.food_type_indoor, right.food_type_indoor]
+
+    if random() < 0.5:
+        [a_food_outdoor, b_food_outdoor] = [right.food_type_outdoor, left.food_type_outdoor]
+    else:
+        [a_food_outdoor, b_food_outdoor] = [left.food_type_outdoor, right.food_type_outdoor]
 
     return [
-        create_yard(a_food, a_indoor_large, a_indoor_small, a_outdoor_large, a_outdoor_small),
-        create_yard(b_food, b_indoor_large, b_indoor_small, b_outdoor_large, b_outdoor_small),
+        create_yard(a_food_indoor, a_indoor_large, a_indoor_small, a_food_outdoor, a_outdoor_large, a_outdoor_small),
+        create_yard(b_food_indoor, b_indoor_large, b_indoor_small, b_food_outdoor, b_outdoor_large, b_outdoor_small),
     ]
 
-def inside_outside_crossover(left: Yard, right: Yard) -> list[Yard]:
+def indoor_outdoor_crossover(left: Yard, right: Yard) -> list[Yard]:
     # Only perform crossover if the yard sizes are the same
     if len(left.indoor_large) == len(right.indoor_large) and len(left.indoor_large) == len(left.outdoor_large) and len(left.outdoor_large) == len(right.outdoor_large) and len(left.indoor_small) == len(right.indoor_small) and len(left.indoor_small) == len(left.outdoor_small) and len(left.outdoor_small) == len(right.outdoor_small):
         [a_indoor_large, b_indoor_large] = crossover(left.indoor_large, right.outdoor_large, left.used, right.used)
         [a_indoor_small, b_indoor_small] = crossover(left.indoor_small, right.outdoor_small, left.used, right.used)
         [a_outdoor_large, b_outdoor_large] = crossover(left.outdoor_large, right.indoor_large, left.used, right.used)
         [a_outdoor_small, b_outdoor_small] = crossover(left.outdoor_small, right.indoor_small, left.used, right.used)
-    
+
         if random() < 0.5:
-            [a_food, b_food] = [right.food_type, left.food_type]
+            [a_food_indoor, b_food_indoor] = [right.food_type_indoor, left.food_type_indoor]
         else:
-            [a_food, b_food] = [left.food_type, right.food_type]
+            [a_food_indoor, b_food_indoor] = [left.food_type_indoor, right.food_type_indoor]
+
+        if random() < 0.5:
+            [a_food_outdoor, b_food_outdoor] = [right.food_type_outdoor, left.food_type_outdoor]
+        else:
+            [a_food_outdoor, b_food_outdoor] = [left.food_type_outdoor, right.food_type_outdoor]
+
         return [
-            create_yard(a_food, a_indoor_large, a_indoor_small, a_outdoor_large, a_outdoor_small),
-            create_yard(b_food, b_indoor_large, b_indoor_small, b_outdoor_large, b_outdoor_small),
+            create_yard(a_food_indoor, a_indoor_large, a_indoor_small, a_food_outdoor, a_outdoor_large, a_outdoor_small),
+            create_yard(b_food_indoor, b_indoor_large, b_indoor_small, b_food_outdoor, b_outdoor_large, b_outdoor_small),
         ]
 
     return []
@@ -453,7 +475,7 @@ def mutate_yard(yard: Yard) -> Yard:
 
     indoor_large = set(indoor_large)
     indoor_small = set(indoor_small)
-    outdoor_large = set(outdoor_large)    
+    outdoor_large = set(outdoor_large)
     outdoor_small = set(outdoor_small)
 
     used_items = set(yard.used)
@@ -502,11 +524,16 @@ def mutate_yard(yard: Yard) -> Yard:
         used_items.add(new_item)
     
     if random() < 0.3:
-        food_type = yard.food_type
+        food_type_indoor = yard.food_type_indoor
     else:
-        food_type = choice(ALLOWED_FOODS)
+        food_type_indoor = choice(ALLOWED_FOODS)
 
-    return create_yard(food_type, indoor_large, indoor_small, outdoor_large, outdoor_small)
+    if random() < 0.3:
+        food_type_outdoor = yard.food_type_outdoor
+    else:
+        food_type_outdoor = choice(ALLOWED_FOODS)
+
+    return create_yard(food_type_indoor, indoor_large, indoor_small, food_type_outdoor, outdoor_large, outdoor_small)
 
 
 def pick(items):
