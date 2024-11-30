@@ -234,7 +234,7 @@ def main():
         print(analyze_command.strip())
 
 
-        
+
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from multiprocessing import cpu_count
 
@@ -296,7 +296,7 @@ def create_offspring_and_mutate(pool: set[Yard], winners: list[Yard]) -> list[Ya
         for result in offspring:
             if random() < MUTATION_OFFSPRING_RATE:
                 offspring.append(mutate_yard(result))
-            
+
         for yard in list(pool):
             if random() < MUTATION_RATE:
                 offspring.append(mutate_yard(yard))
@@ -353,7 +353,7 @@ def get_value(food_type_indoor: int, a: set[int], b: set[int], food_type_outdoor
     analyzer = NekoAtsumeAnalyzer(args)
     results = analyzer.analyze()
     if type is None:
-        max_food = 0 
+        max_food = 0
         # When maximizing for some expensive food while trying to minimize what could've been done cheaper
         # for x in range(1, 8):
         #     if x == args.food_type:
@@ -383,15 +383,15 @@ def k_tournament(yards: set[Yard]) -> set[Yard]:
 
 def crossover_mutation(left: Yard, right: Yard) -> list[Yard]:
     crossed = False
-    if len(left.indoor_large) == len(right.indoor_large): 
+    if len(left.indoor_large) == len(right.indoor_large):
         [a_indoor_large, b_indoor_large] = crossover(left.indoor_large, right.indoor_large, left.used, right.used)
         [a_indoor_small, b_indoor_small] = crossover(left.indoor_small, right.indoor_small, left.used, right.used)
         crossed = True
     else: # No crossover if different
         [a_indoor_large, b_indoor_large] = [left.indoor_large, right.indoor_large]
         [a_indoor_small, b_indoor_small] = [left.indoor_small, right.indoor_small]
-    
-    if len(left.outdoor_large) == len(right.outdoor_large): 
+
+    if len(left.outdoor_large) == len(right.outdoor_large):
         [a_outdoor_large, b_outdoor_large] = crossover(left.outdoor_large, right.outdoor_large, left.used, right.used)
         [a_outdoor_small, b_outdoor_small] = crossover(left.outdoor_small, right.outdoor_small, left.used, right.used)
         crossed = True
@@ -401,7 +401,7 @@ def crossover_mutation(left: Yard, right: Yard) -> list[Yard]:
 
     if not crossed:
         return []
-    
+
     if random() < 0.5:
         [a_food_indoor, b_food_indoor] = [right.food_type_indoor, left.food_type_indoor]
     else:
@@ -451,7 +451,7 @@ def crossover(left: set[int], right: set[int], left_used: set[int], right_used: 
 
     l = list(left)
     r = list(right)
-    
+
     for _ in range(randint(0, len(l) - 1)):
         swap_index = randint(0, len(l) - 1)
         tmp = l[swap_index]
@@ -522,13 +522,13 @@ def mutate_yard(yard: Yard) -> Yard:
                 break
         outdoor_small.add(new_item)
         used_items.add(new_item)
-    
-    if random() < 0.3:
+
+    if random() < 0.7:
         food_type_indoor = yard.food_type_indoor
     else:
         food_type_indoor = choice(ALLOWED_FOODS)
 
-    if random() < 0.3:
+    if random() < 0.7:
         food_type_outdoor = yard.food_type_outdoor
     else:
         food_type_outdoor = choice(ALLOWED_FOODS)
