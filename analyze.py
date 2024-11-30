@@ -1,11 +1,12 @@
-from dataclasses import dataclass
-import json
+import argparse
 import itertools
+import json
+from collections import defaultdict
+from dataclasses import dataclass
+from typing import DefaultDict, Dict, List, Tuple
+
 import numpy as np
 import pandas as pd
-import argparse
-from collections import defaultdict
-from typing import Dict, List, Tuple, DefaultDict
 
 from groups import GroupingFactory
 
@@ -176,9 +177,13 @@ class NekoAtsumeAnalyzer:
         # Load all necessary data
         self.item_to_name = DataLoader.load_json_data("data_inferred/item_to_name.json")
         self.item_to_size = DataLoader.load_json_data("data_inferred/item_to_size.json")
-        self.cat_vs_food = DataLoader.create_cat_vs_food_dict(
+        self.cat_vs_food_indoor = DataLoader.create_cat_vs_food_dict(
             DataLoader.load_json_data("data/output_cats_vs_food.json"),
-            self.args.food_type,
+            self.args.food_type_indoor,
+        )
+        self.cat_vs_food_outdoor = DataLoader.create_cat_vs_food_dict(
+            DataLoader.load_json_data("data/output_cats_vs_food.json"),
+            self.args.food_type_outdoor,
         )
         self.cat_vs_cat_all = DataLoader.create_cat_vs_cat_dict(
             DataLoader.load_json_data("data/output_cats_vs_cats.json")
@@ -382,8 +387,10 @@ class NekoAtsumeAnalyzer:
                 [self.cat_to_silver_mul[cat_id] for cat_id in cat_ids]
             )
             multiplier_goodies = self.playspace_mappings["silver_mul"][playspace_id]
+            is_indoor = self.grouping_strategy.get_is_indoors(playspace_id) if self.is_custom_grouping else self.args.is_indoor
+            cat_vs_food = self.cat_vs_food_indoor if is_indoor else self.cat_vs_food_outdoor
             cat_visit_prob_by_food = np.array(
-                [self.cat_vs_food[cat_id] for cat_id in cat_ids]
+                [cat_vs_food[cat_id] for cat_id in cat_ids]
             )
             multiplier_goodie_charms = self.playspace_mappings["charm"][playspace_id]
             multiplier_weather_by_playspace_delta = self.playspace_to_weather_mul.get(
@@ -393,7 +400,7 @@ class NekoAtsumeAnalyzer:
             if (
                 self.is_custom_grouping
                 and self.outdoor_weather
-                and self.grouping_strategy.get_is_indoors(playspace_id)
+                and is_indoor
             ):
                 multiplier_weather_by_playspace_delta = (
                     self.additional_playspace_to_weather_mul[playspace_id]
@@ -729,9 +736,20 @@ def main():
     parser.add_argument(
         "--food_type",
         type=int,
-        default=2,
         choices=[1, 2, 3, 4, 5, 6, 7, 99],
         help="Type of food to place: 1=Thrifty Bitz, 2=Frisky Bitz, 3=Ritzy Bitz, 4=Bonito Bitz, 5=Deluxe Tuna Bitz, 6=Sashimi, 7=Sashimi Boat, 99=idk",
+    )
+    parser.add_argument(
+        "--food_type_indoor",
+        type=int,
+        choices=[1, 2, 3, 4, 5, 6, 7, 99],
+        help="Type of food to place indoor: 1=Thrifty Bitz, 2=Frisky Bitz, 3=Ritzy Bitz, 4=Bonito Bitz, 5=Deluxe Tuna Bitz, 6=Sashimi, 7=Sashimi Boat, 99=idk",
+    )
+    parser.add_argument(
+        "--food_type_outdoor",
+        type=int,
+        choices=[1, 2, 3, 4, 5, 6, 7, 99],
+        help="Type of food to place outdoor: 1=Thrifty Bitz, 2=Frisky Bitz, 3=Ritzy Bitz, 4=Bonito Bitz, 5=Deluxe Tuna Bitz, 6=Sashimi, 7=Sashimi Boat, 99=idk",
     )
     parser.add_argument(
         "--item_damage_state",
@@ -810,6 +828,18 @@ def main():
     )
 
     args = parser.parse_args()
+    if args.food_type is None and args.food_type_indoor is None and args.food_type_outdoor is None:
+        args.food_type_indoor = 2
+        args.food_type_outdoor = 2
+    elif args.food_type is not None and args.food_type_indoor is None and args.food_type_outdoor is None:
+        args.food_type_indoor = args.food_type
+        args.food_type_outdoor = args.food_type
+    elif args.food_type_indoor is not None and args.food_type_outdoor is not None:
+        pass
+    else:
+        raise ValueError("Invalid food type arguments, either provide --food_type OR both --food_type_indoor --food_type_outdoor)")
+
+    
     analyzer = NekoAtsumeAnalyzer(args)
     results = analyzer.analyze()
 
