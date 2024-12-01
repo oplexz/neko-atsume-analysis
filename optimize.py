@@ -216,7 +216,7 @@ def main():
         if iteration % 10 == 0:
             for type in ["gold_equiv", "silver_equiv", "gold", "silver"]:
                 value = get_value(best.food_type_indoor, best.indoor_large, best.indoor_small, best.food_type_outdoor, best.outdoor_large, best.outdoor_small, type)
-                print(f"  Value for {type}: {value}")
+                print(f"    Value for {type}: {value}")
 
         analyze_command = "python analyze.py "
         analyze_command += f"--output_type {BASE_ARGS.output_type} "
@@ -229,8 +229,8 @@ def main():
             analyze_command += f"--item_damage_state {BASE_ARGS.item_damage_state} "
         if BASE_ARGS.output_type == 'cat_probability':
             analyze_command += f"--cat_id {' '.join(str(i) for i in BASE_ARGS.cat_id)} "
-        analyze_command += f"--items_of_interest_indoors {' '.join(str(i) for i in list(best.indoor_large) + list(best.indoor_small))} "
-        analyze_command += f"--items_of_interest_outdoors {' '.join(str(i) for i in list(best.outdoor_large) + list(best.outdoor_small))} "
+        analyze_command += f"--items_of_interest_indoors {' '.join(str(i) for i in list(best.indoor_large) + list(best.indoor_small) + [best.food_type_indoor])} "
+        analyze_command += f"--items_of_interest_outdoors {' '.join(str(i) for i in list(best.outdoor_large) + list(best.outdoor_small) + [best.food_type_outdoor])} "
         print(analyze_command.strip())
 
 
@@ -347,8 +347,8 @@ def get_value(food_type_indoor: int, a: set[int], b: set[int], food_type_outdoor
 
     args.food_type_indoor = food_type_indoor
     args.food_type_outdoor = food_type_outdoor
-    args.items_of_interest_indoors = list(a) + list(b)
-    args.items_of_interest_outdoors = list(c) + list(d)
+    args.items_of_interest_indoors = list(a) + list(b) + [food_type_indoor]
+    args.items_of_interest_outdoors = list(c) + list(d) + [food_type_outdoor]
 
     analyzer = NekoAtsumeAnalyzer(args)
     results = analyzer.analyze()
