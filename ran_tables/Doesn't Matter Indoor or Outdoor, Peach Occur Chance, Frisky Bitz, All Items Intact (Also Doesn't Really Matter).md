@@ -1,31 +1,31 @@
 #### Args
-Namespace(food_type=2, item_damage_state=0, weather=0, is_indoor=False, output_type='cat_probability', total_duration_minutes=1440, cat_id=[24], group_def='item', items_of_interest_indoors=None, items_of_interest_outdoors=None, num_iterations_for_cat_on_cat=10, filter_by_na2=False)
+Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_state=0, weather=0, is_indoor=False, output_type='cat_probability', total_duration_minutes=1440, cat_id=[24], group_def='item', items_of_interest_indoors=None, items_of_interest_outdoors=None, num_iterations_for_cat_on_cat=10, filter_by_na2=False)
 
 #### Results
 |   Goodie Id | Name                                                  | Is Large   | Is in NA2   |       Value |
 |-------------|-------------------------------------------------------|------------|-------------|-------------|
 |         158 | Tiramisu Cube                                         | False      | -           | 0.00316131  |
 |         221 | Paper Umbrella                                        | True       | -           | 0.00307804  |
-|         182 | -                                                     | -          | -           | 0.00284305  |
+|         182 | Sushi Cushion (omelet)                                | -          | -           | 0.00284305  |
 |         222 | Beach Umbrella                                        | True       | Yes         | 0.00277958  |
 |         223 | Fairy-tale Parasol                                    | True       | -           | 0.00244007  |
 |         301 | Cat Macaron (Green)                                   | False      | -           | 0.00218188  |
-|         181 | -                                                     | -          | -           | 0.0021742   |
+|         181 | Sushi Cushion (shrimp)                                | -          | -           | 0.0021742   |
 |         179 | Pancake Cushion                                       | False      | -           | 0.00211988  |
 |         122 | Cardboard Cafe                                        | True       | Yes         | 0.0020896   |
 |         300 | Cat Macaron (Pink)                                    | False      | Yes         | 0.00205637  |
 |         231 | Bureau with Pot                                       | True       | -           | 0.00194748  |
 |         228 | Athletic Cat-Gym                                      | True       | -           | 0.00168874  |
-|         265 | Heating Stove                                         | True       | -           | 0.00164949  |
+|         265 | Heating Stove                                         | True       | Yes         | 0.00164949  |
 |         229 | Art Deco Cat Tree                                     | True       | -           | 0.00163103  |
 |         267 | Space Heater                                          | True       | -           | 0.00152319  |
 |         239 | Doughnut Tunnel                                       | True       | -           | 0.00149281  |
-|         180 | -                                                     | -          | -           | 0.00145366  |
+|         180 | Sushi Cushion (tuna)                                  | -          | -           | 0.00145366  |
 |         258 | Twisty Rail                                           | True       | Yes         | 0.00139984  |
 |         303 | Cream-puff House                                      | False      | -           | 0.00133751  |
 |         157 | Navy-blue Cube                                        | False      | -           | 0.00128612  |
 |         203 | Hammock (Woven)                                       | False      | -           | 0.00126211  |
-|         227 | Cat Metropolis                                        | True       | -           | 0.00125812  |
+|         227 | Cat Metropolis                                        | True       | Yes         | 0.00125812  |
 |         156 | Orange Cube                                           | False      | -           | 0.00124071  |
 |         192 | Strawberry Cocoon                                     | False      | -           | 0.00117643  |
 |         169 | Large Cooling Mat                                     | True       | -           | 0.00114941  |
@@ -110,12 +110,12 @@ Namespace(food_type=2, item_damage_state=0, weather=0, is_indoor=False, output_t
 |         251 | Kick Toy (Mouse)                                      | False      | Yes         | 0.000411224 |
 |         141 | Cushion (Yellow)                                      | False      | -           | 0.000407005 |
 |         289 | Bucket (Blue)                                         | False      | Yes         | 0.00040374  |
-|         307 | -                                                     | -          | -           | 0.00040348  |
+|         307 | Traveler's Hat                                        | False      | Yes         | 0.00040348  |
 |         135 | Grass Cushion (Purple)                                | False      | -           | 0.000398177 |
 |         210 | Tent (Blizzard)                                       | False      | -           | 0.000395051 |
 |         188 | Plum Coccoon                                          | False      | Yes         | 0.000390665 |
 |         253 | Kick Toy (Bunny)                                      | False      | -           | 0.000386987 |
-|         255 | -                                                     | -          | -           | 0.000386304 |
+|         255 | Kick Toy (Sea Bream)                                  | -          | -           | 0.000386304 |
 |         110 | Toy Capsule                                           | False      | -           | 0.000376592 |
 |         103 | Rubber Ball (Blue)                                    | False      | -           | 0.000374716 |
 |         298 | Cowboy Hat                                            | False      | Yes         | 0.000374114 |
@@ -129,7 +129,7 @@ Namespace(food_type=2, item_damage_state=0, weather=0, is_indoor=False, output_t
 |         152 | Fluffy Bed (White)                                    | False      | Yes         | 0.000351072 |
 |         102 | Rubber Ball (Yellow)                                  | False      | -           | 0.000349168 |
 |         148 | Lucky Cushion                                         | False      | -           | 0.00034464  |
-|         308 | -                                                     | -          | -           | 0.00034464  |
+|         308 | Ticket Cushion                                        | False      | Yes         | 0.00034464  |
 |         275 | Scratching Post                                       | False      | Yes         | 0.00034296  |
 |         142 | Cushion (Green)                                       | False      | -           | 0.000337658 |
 |         196 | Egg Bed (Nightview)                                   | False      | -           | 0.000336924 |
@@ -166,9 +166,9 @@ Namespace(food_type=2, item_damage_state=0, weather=0, is_indoor=False, output_t
 |         202 | Hammock (Pink)                                        | False      | -           | 0.000256246 |
 |         299 | Wood Pail                                             | False      | -           | 0.000255402 |
 |         114 | Gift Box (Green)                                      | False      | -           | 0.000253232 |
-|         147 | -                                                     | -          | -           | 0.000252811 |
+|         147 | Cushion (Wood)                                        | -          | -           | 0.000252811 |
 |         272 | Paper Bag                                             | False      | Yes         | 0.000252056 |
-|         262 | Hot-Water Bottle                                      | False      | -           | 0.000249762 |
+|         262 | Hot-Water Bottle                                      | False      | Yes         | 0.000249762 |
 |         240 | Choco Cornet Tunnel                                   | False      | -           | 0.000249663 |
 |         113 | Gift Box (Red)                                        | False      | -           | 0.000247034 |
 |         198 | Bean Bag                                              | False      | Yes         | 0.000246449 |
@@ -176,20 +176,20 @@ Namespace(food_type=2, item_damage_state=0, weather=0, is_indoor=False, output_t
 |         274 | Scratching Board                                      | False      | Yes         | 0.000240157 |
 |         132 | Grass Cushion (Red)                                   | False      | -           | 0.000239009 |
 |         119 | Treasure-box                                          | False      | Yes         | 0.000233473 |
-|         205 | -                                                     | -          | -           | 0.000230313 |
+|         205 | Chocolate Tart Bed                                    | -          | -           | 0.000230313 |
 |         263 | Hot Mat (Small)                                       | False      | -           | 0.000225325 |
 |         288 | Planter                                               | False      | Yes         | 0.000224021 |
 |         204 | Luxurious Hammock                                     | False      | -           | 0.000222443 |
 |         100 | Baseball                                              | False      | Yes         | 0.000222281 |
 |         183 | Head Space                                            | False      | -           | 0.000221072 |
-|         206 | -                                                     | -          | -           | 0.000218645 |
+|         206 | Egg Tart Bed                                          | -          | -           | 0.000218645 |
 |         107 | Soccer Ball                                           | False      | Yes         | 0.000216549 |
 |         138 | Cushion (Beige)                                       | False      | -           | 0.000214235 |
 |         163 | Thick Cooling Pad                                     | False      | -           | 0.000214066 |
 |         247 | Zebra Grass Gadget                                    | False      | -           | 0.000213543 |
 |         118 | Cardboard Truck                                       | False      | Yes         | 0.000208236 |
 |         245 | Wing-thing Teaser                                     | False      | -           | 0.000207707 |
-|         216 | Pom-pom Sock                                          | False      | -           | 0.000206362 |
+|         216 | Pom-pom Sock                                          | False      | Yes         | 0.000206362 |
 |         244 | Tail-thing Teaser                                     | False      | Yes         | 0.000205328 |
 |         250 | Mister Dragonfly                                      | False      | Yes         | 0.000200846 |
 |         219 | Cozy Blanket (Red)                                    | False      | -           | 0.000195172 |

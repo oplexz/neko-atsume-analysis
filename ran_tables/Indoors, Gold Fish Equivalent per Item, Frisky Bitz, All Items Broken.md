@@ -1,10 +1,10 @@
 #### Args
-Namespace(food_type=2, item_damage_state=1, weather=0, is_indoor=True, output_type='gold_equiv', total_duration_minutes=1440, cat_id=None, group_def='item', items_of_interest_indoors=None, items_of_interest_outdoors=None, num_iterations_for_cat_on_cat=10, filter_by_na2=False)
+Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_state=1, weather=0, is_indoor=True, output_type='gold_equiv', total_duration_minutes=1440, cat_id=None, group_def='item', items_of_interest_indoors=None, items_of_interest_outdoors=None, num_iterations_for_cat_on_cat=10, filter_by_na2=False)
 
 #### Results
 |   Goodie Id | Name                                                  | Is Large   | Is in NA2   |     Value |
 |-------------|-------------------------------------------------------|------------|-------------|-----------|
-|         227 | Cat Metropolis                                        | True       | -           | 38.3343   |
+|         227 | Cat Metropolis                                        | True       | Yes         | 38.3343   |
 |         226 | Cat Condo Complex                                     | True       | -           | 34.5644   |
 |         230 | Tower of Treats                                       | True       | -           | 34.4727   |
 |         231 | Bureau with Pot                                       | True       | -           | 33.9112   |
@@ -25,7 +25,7 @@ Namespace(food_type=2, item_damage_state=1, weather=0, is_indoor=True, output_ty
 |         222 | Beach Umbrella                                        | True       | Yes         | 22.8316   |
 |         234 | Tunnel (T Piece)                                      | True       | Yes         | 21.8633   |
 |         225 | Three-tier Cat Tree                                   | True       | -           | 20.746    |
-|         265 | Heating Stove                                         | True       | -           | 20.1479   |
+|         265 | Heating Stove                                         | True       | Yes         | 20.1479   |
 |         158 | Tiramisu Cube                                         | False      | -           | 17.2041   |
 |         207 | Antique Chair                                         | True       | -           | 17.0599   |
 |         159 | Dice Cube                                             | False      | -           | 16.8855   |
@@ -47,11 +47,11 @@ Namespace(food_type=2, item_damage_state=1, weather=0, is_indoor=True, output_ty
 |         124 | Dino Deluxe                                           | True       | Yes         | 15.0322   |
 |         199 | Giant Cushion                                         | False      | -           | 14.9931   |
 |         212 | Mushroom House                                        | False      | -           | 13.9197   |
-|         180 | -                                                     | -          | -           | 12.7585   |
+|         180 | Sushi Cushion (tuna)                                  | -          | -           | 12.7585   |
 |         197 | Zanzibar Cushion                                      | False      | -           | 11.4198   |
-|         181 | -                                                     | -          | -           | 11.2501   |
+|         181 | Sushi Cushion (shrimp)                                | -          | -           | 11.2501   |
 |         306 | Golden Fish Statue                                    | False      | Yes         | 10.7409   |
-|         182 | -                                                     | -          | -           | 10.7357   |
+|         182 | Sushi Cushion (omelet)                                | -          | -           | 10.7357   |
 |         179 | Pancake Cushion                                       | False      | -           | 10.6185   |
 |         196 | Egg Bed (Nightview)                                   | False      | -           | 10.4505   |
 |         155 | Royal Bed                                             | False      | -           | 10.4401   |
@@ -60,7 +60,7 @@ Namespace(food_type=2, item_damage_state=1, weather=0, is_indoor=True, output_ty
 |         128 | Silk Crepe Pillow                                     | False      | -           | 10.2809   |
 |         287 | Kokeshi Pot (Spring)                                  | False      | -           | 10.2758   |
 |         286 | Kokeshi Pot (Flow)                                    | False      | -           | 10.2459   |
-|         307 | -                                                     | -          | -           | 10.0574   |
+|         307 | Traveler's Hat                                        | False      | Yes         | 10.0574   |
 |         178 | Burger Cushion                                        | False      | Yes         |  9.98036  |
 |         195 | Egg Bed (Pink)                                        | False      | -           |  9.86544  |
 |         298 | Cowboy Hat                                            | False      | Yes         |  9.81533  |
@@ -91,7 +91,7 @@ Namespace(food_type=2, item_damage_state=1, weather=0, is_indoor=True, output_ty
 |         101 | Rubber Ball (Red)                                     | False      | Yes         |  8.75426  |
 |         252 | Kick Toy (Fish)                                       | False      | -           |  8.74899  |
 |         271 | Kiddy Rucksack (Lime)                                 | False      | -           |  8.69906  |
-|         216 | Pom-pom Sock                                          | False      | -           |  8.68863  |
+|         216 | Pom-pom Sock                                          | False      | Yes         |  8.68863  |
 |         176 | Sakuramochi Cushion                                   | False      | -           |  8.67696  |
 |         171 | Plum Cushion (Red)                                    | False      | Yes         |  8.66679  |
 |         217 | Colorful Sock                                         | False      | -           |  8.59851  |
@@ -103,7 +103,7 @@ Namespace(food_type=2, item_damage_state=1, weather=0, is_indoor=True, output_ty
 |         244 | Tail-thing Teaser                                     | False      | Yes         |  8.51809  |
 |         137 | Cypress Mat                                           | False      | -           |  8.51618  |
 |         115 | Shopping Box (Small)                                  | False      | Yes         |  8.51477  |
-|         255 | -                                                     | -          | -           |  8.49927  |
+|         255 | Kick Toy (Sea Bream)                                  | -          | -           |  8.49927  |
 |         294 | Goldfish Bowl                                         | False      | Yes         |  8.48843  |
 |         154 | Fluffy Bed (Brown)                                    | False      | -           |  8.48494  |
 |         105 | Beach Ball                                            | False      | -           |  8.47811  |
@@ -135,11 +135,11 @@ Namespace(food_type=2, item_damage_state=1, weather=0, is_indoor=True, output_ty
 |         135 | Grass Cushion (Purple)                                | False      | -           |  8.20319  |
 |         280 | Iron Teapod                                           | False      | -           |  8.20233  |
 |         145 | Cushion (Lemon)                                       | False      | -           |  8.19941  |
-|         147 | -                                                     | -          | -           |  8.17587  |
+|         147 | Cushion (Wood)                                        | -          | -           |  8.17587  |
 |         146 | Cushion (Orange)                                      | False      | -           |  8.16891  |
 |         170 | Fluffy Cushion                                        | False      | Yes         |  8.16484  |
 |         152 | Fluffy Bed (White)                                    | False      | Yes         |  8.14884  |
-|         262 | Hot-Water Bottle                                      | False      | -           |  8.13781  |
+|         262 | Hot-Water Bottle                                      | False      | Yes         |  8.13781  |
 |         113 | Gift Box (Red)                                        | False      | -           |  8.13022  |
 |         134 | Grass Cushion (Green)                                 | False      | -           |  8.09198  |
 |         110 | Toy Capsule                                           | False      | -           |  8.08642  |
@@ -172,15 +172,15 @@ Namespace(food_type=2, item_damage_state=1, weather=0, is_indoor=True, output_ty
 |         277 | Fruit Basket                                          | False      | Yes         |  7.77488  |
 |         243 | Shell Tunnel (White)                                  | False      | -           |  7.75945  |
 |         148 | Lucky Cushion                                         | False      | -           |  7.74215  |
-|         308 | -                                                     | -          | -           |  7.74215  |
+|         308 | Ticket Cushion                                        | False      | Yes         |  7.74215  |
 |         241 | Shell Tunnel (Pink)                                   | False      | -           |  7.70306  |
 |         296 | Glass Vase                                            | False      | Yes         |  7.69811  |
-|         205 | -                                                     | -          | -           |  7.68981  |
+|         205 | Chocolate Tart Bed                                    | -          | -           |  7.68981  |
 |         274 | Scratching Board                                      | False      | Yes         |  7.68507  |
 |         279 | Rice Kettle                                           | False      | -           |  7.68045  |
 |         299 | Wood Pail                                             | False      | -           |  7.64919  |
 |         288 | Planter                                               | False      | Yes         |  7.60164  |
-|         206 | -                                                     | -          | -           |  7.57868  |
+|         206 | Egg Tart Bed                                          | -          | -           |  7.57868  |
 |         219 | Cozy Blanket (Red)                                    | False      | -           |  7.57564  |
 |         256 | Busy Bee                                              | False      | Yes         |  7.56591  |
 |         209 | Tent (Modern Red)                                     | False      | -           |  7.51137  |
