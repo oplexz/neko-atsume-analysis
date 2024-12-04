@@ -347,7 +347,7 @@ def get_value(food_type_indoor: int, a: set[int], b: set[int], food_type_outdoor
 
     args.food_type_indoor = food_type_indoor
     args.food_type_outdoor = food_type_outdoor
-    args.items_of_interest_indoors = list(a) + list(b) + [food_type_indoor]
+    args.items_of_interest_indoors = list(a) + list(b)
     args.items_of_interest_outdoors = list(c) + list(d) + [food_type_outdoor]
 
     analyzer = NekoAtsumeAnalyzer(args)
