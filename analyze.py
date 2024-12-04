@@ -1,6 +1,7 @@
 import argparse
 import itertools
 import json
+from functools import lru_cache
 from collections import defaultdict
 from dataclasses import dataclass
 from typing import DefaultDict, Dict, List, Tuple
@@ -36,27 +37,20 @@ class WeatherTypes:
     ALL = 4294967295
 
 
-cached_json_files = {}
-
-
 # Data loading and preprocessing
 class DataLoader:
     @staticmethod
+    @lru_cache(maxsize=None)
     def load_json_data(filename: str) -> List[Dict]:
-        if filename in cached_json_files:
-            return cached_json_files[filename]
         with open(filename) as f:
-            data = json.load(f)
-            cached_json_files[filename] = data
-            return data
+            return json.load(f)
 
     @staticmethod
-    def load_csv_data(filename: str) -> pd.DataFrame:
-        if filename in cached_json_files:
-            return cached_json_files[filename]
-        df = pd.read_csv(filename)
-        cached_json_files[filename] = df
-        return df
+    @lru_cache(maxsize=None)
+    def load_json_data_as_df(filename: str) -> pd.DataFrame:
+        with open(filename) as f:
+            data = json.load(f)
+            return pd.DataFrame(data)
 
     @staticmethod
     def create_cat_vs_food_dict(data: List[Dict], food_type: int) -> Dict[int, float]:
@@ -178,37 +172,45 @@ class NekoAtsumeAnalyzer:
         self.item_to_name = DataLoader.load_json_data("data_inferred/item_to_name.json")
         self.item_to_size = DataLoader.load_json_data("data_inferred/item_to_size.json")
         self.cat_vs_food_indoor = DataLoader.create_cat_vs_food_dict(
-            DataLoader.load_json_data("data/output_cats_vs_food.json"),
+            DataLoader.load_json_data("NekoAtsume2Data/tables/CatVsFoodTable.json"),
             self.args.food_type_indoor,
         )
         self.cat_vs_food_outdoor = DataLoader.create_cat_vs_food_dict(
-            DataLoader.load_json_data("data/output_cats_vs_food.json"),
+            DataLoader.load_json_data("NekoAtsume2Data/tables/CatVsFoodTable.json"),
             self.args.food_type_outdoor,
         )
         self.cat_vs_cat_all = DataLoader.create_cat_vs_cat_dict(
-            DataLoader.load_json_data("data/output_cats_vs_cats.json")
+            DataLoader.load_json_data("NekoAtsume2Data/tables/CatVsCatTable.json")
         )
         self.playspace_to_weather_mul = DataLoader.create_playspace_weather_dict(
-            DataLoader.load_json_data("data/output_playspace_vs_weather.json"),
+            DataLoader.load_json_data(
+                "NekoAtsume2Data/tables/PlaySpaceVsWeatherTable.json"
+            ),
             self.args.weather,
         )
         self.item_existence_set = DataLoader.create_goodie_existence_set(
-            DataLoader.load_json_data("data/output_goods.json")
+            DataLoader.load_json_data("NekoAtsume2Data/tables/GoodsRecordTable.json")
         )
 
         if self.outdoor_weather:
             self.additional_playspace_to_weather_mul = (
                 DataLoader.create_playspace_weather_dict(
-                    DataLoader.load_json_data("data/output_playspace_vs_weather.json"),
+                    DataLoader.load_json_data(
+                        "NekoAtsume2Data/tables/PlaySpaceVsWeatherTable.json"
+                    ),
                     self.outdoor_weather,
                 )
             )
 
-        df_cats = DataLoader.load_csv_data("data/output_cats.csv")
+        df_cats = DataLoader.load_json_data_as_df(
+            "NekoAtsume2Data/tables/CatRecordTable.json"
+        )
         self.cat_to_silver_mul = dict(zip(df_cats["Id"], df_cats["Niboshi"]))
         self.cat_to_weather_impact = dict(zip(df_cats["Id"], df_cats["WeatherImpact"]))
 
-        df_playspace = DataLoader.load_csv_data("data/output_playspace.csv")
+        df_playspace = DataLoader.load_json_data_as_df(
+            "NekoAtsume2Data/tables/PlaySpaceRecordTable.json"
+        )
         self.playspace_mappings = {
             "silver_mul": dict(zip(df_playspace["Id"], df_playspace["Niboshi"])),
             "item_id": dict(zip(df_playspace["Id"], df_playspace["ItemId"])),
@@ -270,7 +272,7 @@ class NekoAtsumeAnalyzer:
         for item_id, playspace_dict in all_data.items():
             conflicting_groups = defaultdict(set)
             for this_playspace_id, data in playspace_dict.items():
-                conflicting_idxs = data["conflicted_idxs"]
+                conflicting_idxs = tuple(data["conflicted_idxs"])
                 if not conflicting_idxs:
                     continue
                 conflicting_groups[conflicting_idxs].add(this_playspace_id)
@@ -283,7 +285,7 @@ class NekoAtsumeAnalyzer:
                 if this_key in processed_conflict_keys:
                     continue
                 other_playspace_ids = set(
-                    [int(str(item_id) + idx) for idx in this_key.split(";")]
+                    [int(str(item_id) + str(idx)) for idx in this_key]
                 )
                 # Can't do two groups in the current implementation yet. Needs
                 # probably iteratively updating the amount of time spent
@@ -354,7 +356,9 @@ class NekoAtsumeAnalyzer:
                 data["cat_on_cat_interactions"] = cat_on_cat_interactions
 
     def calculate_non_interactive_variables(self):
-        data = DataLoader.load_json_data("data/output_playspace_vs_cats.json")
+        data = DataLoader.load_json_data(
+            "NekoAtsume2Data/tables/PlaySpaceVsCatTable.json"
+        )
 
         for record in data:
             playspace_id = record["Id"]
@@ -387,8 +391,14 @@ class NekoAtsumeAnalyzer:
                 [self.cat_to_silver_mul[cat_id] for cat_id in cat_ids]
             )
             multiplier_goodies = self.playspace_mappings["silver_mul"][playspace_id]
-            is_indoor = self.grouping_strategy.get_is_indoors(playspace_id) if self.is_custom_grouping else self.args.is_indoor
-            cat_vs_food = self.cat_vs_food_indoor if is_indoor else self.cat_vs_food_outdoor
+            is_indoor = (
+                self.grouping_strategy.get_is_indoors(playspace_id)
+                if self.is_custom_grouping
+                else self.args.is_indoor
+            )
+            cat_vs_food = (
+                self.cat_vs_food_indoor if is_indoor else self.cat_vs_food_outdoor
+            )
             cat_visit_prob_by_food = np.array(
                 [cat_vs_food[cat_id] for cat_id in cat_ids]
             )
@@ -397,11 +407,7 @@ class NekoAtsumeAnalyzer:
                 playspace_id, 0
             )
 
-            if (
-                self.is_custom_grouping
-                and self.outdoor_weather
-                and is_indoor
-            ):
+            if self.is_custom_grouping and self.outdoor_weather and is_indoor:
                 multiplier_weather_by_playspace_delta = (
                     self.additional_playspace_to_weather_mul[playspace_id]
                 )
@@ -828,18 +834,27 @@ def main():
     )
 
     args = parser.parse_args()
-    if args.food_type is None and args.food_type_indoor is None and args.food_type_outdoor is None:
+    if (
+        args.food_type is None
+        and args.food_type_indoor is None
+        and args.food_type_outdoor is None
+    ):
         args.food_type_indoor = 2
         args.food_type_outdoor = 2
-    elif args.food_type is not None and args.food_type_indoor is None and args.food_type_outdoor is None:
+    elif (
+        args.food_type is not None
+        and args.food_type_indoor is None
+        and args.food_type_outdoor is None
+    ):
         args.food_type_indoor = args.food_type
         args.food_type_outdoor = args.food_type
     elif args.food_type_indoor is not None and args.food_type_outdoor is not None:
         pass
     else:
-        raise ValueError("Invalid food type arguments, either provide --food_type OR both --food_type_indoor --food_type_outdoor)")
+        raise ValueError(
+            "Invalid food type arguments, either provide --food_type OR both --food_type_indoor --food_type_outdoor)"
+        )
 
-    
     analyzer = NekoAtsumeAnalyzer(args)
     results = analyzer.analyze()
 
