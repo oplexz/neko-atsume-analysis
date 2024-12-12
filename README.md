@@ -26,7 +26,8 @@ Finally, this is a chill, cute cat collection game, so please just have fun and 
 ```bash
 git clone https://github.com/catlover627/neko-atsume-analysis.git
 cd neko-atsume-analysis
-pip install numpy pandas
+git submodule update --init --recursive
+pip install numpy pandas tabulate
 ```
 
 ## Usage
@@ -36,7 +37,7 @@ Basic usage example:
 python analyze.py --food_type 2 --output_type gold_equiv
 ```
 
-To analyze probability of a specific cat appearing (You can find the cat id to name mapping [here](data/cat_id_to_name.json)):
+To analyze probability of a specific cat appearing (You can find the cat id to name mapping [here](data_inferred/cat_id_to_name.json)):
 ```bash
 python analyze.py --output_type cat_probability --cat_id 24
 ```
