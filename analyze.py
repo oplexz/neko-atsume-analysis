@@ -1,9 +1,10 @@
 import argparse
 import itertools
 import json
-from functools import lru_cache
 from collections import defaultdict
 from dataclasses import dataclass
+from enum import StrEnum
+from functools import lru_cache
 from typing import DefaultDict, Dict, List, Tuple
 
 import numpy as np
@@ -26,15 +27,19 @@ class GameConstants:
     GOLD_FISH_PER_SILVER_FISH = 1 / 50
 
 
-class WeatherTypes:
-    NONE = 0
-    SPRING = 1
-    SUMMER = 2
-    AUTUMN = 4
-    WINTER = 8
-    SNOW = 16
-    BURNING = 32
-    ALL = 4294967295
+class WeatherTypes(StrEnum):
+    NONE = "None"
+    SPRING = "Spring"
+    SUMMER = "Summer"
+    AUTUMN = "Autum"
+    WINTER = "Winter"
+    SNOW = "Snow"
+    BURNING = "Burning"
+
+    @classmethod
+    def get_values(cls):
+        """Returns a list of all weather type values."""
+        return [member.value for member in cls]
 
 
 # Data loading and preprocessing
@@ -64,7 +69,7 @@ class DataLoader:
 
     @staticmethod
     def create_playspace_weather_dict(
-        data: List[Dict], weather: int
+        data: List[Dict], weather: WeatherTypes
     ) -> Dict[int, float]:
         return {
             int(record["Id"]): record["Dict"].get(str(weather), 0) for record in data
@@ -407,7 +412,7 @@ class NekoAtsumeAnalyzer:
                 playspace_id, 0
             )
 
-            if self.is_custom_grouping and self.outdoor_weather and is_indoor:
+            if self.is_custom_grouping and self.outdoor_weather and not is_indoor:
                 multiplier_weather_by_playspace_delta = (
                     self.additional_playspace_to_weather_mul[playspace_id]
                 )
@@ -429,6 +434,8 @@ class NekoAtsumeAnalyzer:
                     / 100
                 )
             )
+
+            cat_visit_prob_permyriad = np.clip(cat_visit_prob_permyriad, 0, 10000)
 
             #
             # Silver rate Calculation
@@ -766,9 +773,9 @@ def main():
     )
     parser.add_argument(
         "--weather",
-        type=int,
-        default=0,
-        choices=[0, 1, 2, 4, 8, 16, 32],
+        type=str,
+        default=WeatherTypes.NONE,
+        choices=WeatherTypes.get_values(),
         help="Weather condition (0=None, other values represent different weather types)",
     )
     parser.add_argument(
