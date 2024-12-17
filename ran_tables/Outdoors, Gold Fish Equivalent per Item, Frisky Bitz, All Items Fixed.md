@@ -1,5 +1,5 @@
 #### Args
-Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_state=2, weather=0, is_indoor=False, output_type='gold_equiv', total_duration_minutes=1440, cat_id=None, group_def='item', items_of_interest_indoors=None, items_of_interest_outdoors=None, num_iterations_for_cat_on_cat=10, filter_by_na2=False)
+Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_state=2, weather='None', is_indoor=False, output_type='gold_equiv', total_duration_minutes=1440, cat_id=None, group_def='item', items_of_interest_indoors=None, items_of_interest_outdoors=None, num_iterations_for_cat_on_cat=10, filter_by_na2=False)
 
 #### Results
 |   Goodie Id | Name                                                  | Is Large   | Is in NA2   |     Value |
@@ -8,7 +8,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         260 | Round Kotatsu                                         | True       | -           | 20.0598   |
 |         230 | Tower of Treats                                       | True       | -           | 19.9582   |
 |         226 | Cat Condo Complex                                     | True       | -           | 19.4255   |
-|         259 | Kotatsu                                               | True       | -           | 19.1952   |
+|         259 | Kotatsu                                               | True       | Yes         | 19.1952   |
 |         231 | Bureau with Pot                                       | True       | -           | 19.0685   |
 |         123 | Cardboard Choo-choo                                   | True       | -           | 18.138    |
 |         261 | Sunken Fireplace                                      | True       | -           | 17.8122   |
@@ -47,7 +47,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         180 | Sushi Cushion (tuna)                                  | -          | -           |  8.74853  |
 |         293 | Snow Sled                                             | False      | -           |  8.7219   |
 |         213 | Shiitake House                                        | False      | -           |  8.49321  |
-|         197 | Zanzibar Cushion                                      | False      | -           |  8.35624  |
+|         197 | Zanzibar Cushion                                      | False      | Yes         |  8.35624  |
 |         212 | Mushroom House                                        | False      | -           |  7.80265  |
 |         155 | Royal Bed                                             | False      | -           |  7.64742  |
 |         306 | Golden Fish Statue                                    | False      | Yes         |  7.47606  |
@@ -106,7 +106,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         177 | Kashiwamochi Cushion                                  | False      | -           |  5.22292  |
 |         171 | Plum Cushion (Red)                                    | False      | Yes         |  5.22289  |
 |         139 | Cushion (Pink)                                        | False      | -           |  5.21894  |
-|         183 | Head Space                                            | False      | -           |  5.20087  |
+|         183 | Head Space                                            | False      | Yes         |  5.20087  |
 |         255 | Kick Toy (Sea Bream)                                  | -          | -           |  5.19812  |
 |         115 | Shopping Box (Small)                                  | False      | Yes         |  5.19707  |
 |         145 | Cushion (Lemon)                                       | False      | -           |  5.19663  |
@@ -138,7 +138,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         218 | Arabesque Blanket                                     | False      | -           |  4.98076  |
 |         163 | Thick Cooling Pad                                     | False      | -           |  4.97941  |
 |         137 | Cypress Mat                                           | False      | -           |  4.97813  |
-|         245 | Wing-thing Teaser                                     | False      | -           |  4.97556  |
+|         245 | Wing-thing Teaser                                     | False      | Yes         |  4.97556  |
 |         113 | Gift Box (Red)                                        | False      | -           |  4.94881  |
 |         262 | Hot-Water Bottle                                      | False      | Yes         |  4.94732  |
 |         170 | Fluffy Cushion                                        | False      | Yes         |  4.91837  |
@@ -191,7 +191,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         164 | Cool Aluminum Pad                                     | False      | -           |  4.2968   |
 |         144 | Cushion (B&W)                                         | False      | -           |  4.2847   |
 |         211 | Tent (Pyramid)                                        | False      | Yes         |  4.2674   |
-|         141 | Cushion (Yellow)                                      | False      | -           |  4.2665   |
+|         141 | Cushion (Yellow)                                      | False      | Yes         |  4.2665   |
 |         119 | Treasure-box                                          | False      | Yes         |  4.23734  |
 |         208 | Tent (Nature)                                         | False      | -           |  4.23497  |
 |         246 | Wild-thing Teaser                                     | False      | -           |  4.21514  |

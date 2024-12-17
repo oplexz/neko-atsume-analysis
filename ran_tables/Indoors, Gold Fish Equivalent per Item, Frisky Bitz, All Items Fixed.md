@@ -1,5 +1,5 @@
 #### Args
-Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_state=2, weather=0, is_indoor=True, output_type='gold_equiv', total_duration_minutes=1440, cat_id=None, group_def='item', items_of_interest_indoors=None, items_of_interest_outdoors=None, num_iterations_for_cat_on_cat=10, filter_by_na2=False)
+Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_state=2, weather='None', is_indoor=True, output_type='gold_equiv', total_duration_minutes=1440, cat_id=None, group_def='item', items_of_interest_indoors=None, items_of_interest_outdoors=None, num_iterations_for_cat_on_cat=10, filter_by_na2=False)
 
 #### Results
 |   Goodie Id | Name                                                  | Is Large   | Is in NA2   |     Value |
@@ -9,7 +9,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         230 | Tower of Treats                                       | True       | -           | 34.4727   |
 |         231 | Bureau with Pot                                       | True       | -           | 33.9112   |
 |         260 | Round Kotatsu                                         | True       | -           | 33.4861   |
-|         259 | Kotatsu                                               | True       | -           | 32.2422   |
+|         259 | Kotatsu                                               | True       | Yes         | 32.2422   |
 |         123 | Cardboard Choo-choo                                   | True       | -           | 30.8195   |
 |         229 | Art Deco Cat Tree                                     | True       | -           | 29.3753   |
 |         261 | Sunken Fireplace                                      | True       | -           | 29.301    |
@@ -48,7 +48,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         199 | Giant Cushion                                         | False      | -           | 14.9323   |
 |         212 | Mushroom House                                        | False      | -           | 13.9197   |
 |         180 | Sushi Cushion (tuna)                                  | -          | -           | 12.7585   |
-|         197 | Zanzibar Cushion                                      | False      | -           | 11.4597   |
+|         197 | Zanzibar Cushion                                      | False      | Yes         | 11.4597   |
 |         181 | Sushi Cushion (shrimp)                                | -          | -           | 11.2501   |
 |         306 | Golden Fish Statue                                    | False      | Yes         | 10.7409   |
 |         182 | Sushi Cushion (omelet)                                | -          | -           | 10.7357   |
@@ -124,7 +124,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         174 | Sheep Cushion                                         | False      | -           |  8.30363  |
 |         139 | Cushion (Pink)                                        | False      | -           |  8.30163  |
 |         140 | Cushion (Brown)                                       | False      | -           |  8.30106  |
-|         245 | Wing-thing Teaser                                     | False      | -           |  8.28068  |
+|         245 | Wing-thing Teaser                                     | False      | Yes         |  8.28068  |
 |         253 | Kick Toy (Bunny)                                      | False      | -           |  8.26871  |
 |         127 | Pillow (Green)                                        | False      | -           |  8.26131  |
 |         102 | Rubber Ball (Yellow)                                  | False      | -           |  8.2578   |
@@ -150,7 +150,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         301 | Cat Macaron (Green)                                   | False      | -           |  7.99879  |
 |         220 | Cozy Blanket (Yellow)                                 | False      | -           |  7.99757  |
 |         173 | Plum Cushion (White)                                  | False      | -           |  7.98228  |
-|         183 | Head Space                                            | False      | -           |  7.9812   |
+|         183 | Head Space                                            | False      | Yes         |  7.9812   |
 |         303 | Cream-puff House                                      | False      | -           |  7.97418  |
 |         185 | White Head Space                                      | False      | -           |  7.97153  |
 |         297 | Jumbo Glass Mug                                       | False      | Yes         |  7.96212  |
@@ -199,7 +199,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         246 | Wild-thing Teaser                                     | False      | -           |  6.98463  |
 |         164 | Cool Aluminum Pad                                     | False      | -           |  6.97964  |
 |         273 | Plastic Bag                                           | False      | Yes         |  6.92497  |
-|         141 | Cushion (Yellow)                                      | False      | -           |  6.91698  |
+|         141 | Cushion (Yellow)                                      | False      | Yes         |  6.91698  |
 |         149 | Shroom House (Red)                                    | False      | -           |  6.91508  |
 |         282 | Clay Pot                                              | False      | -           |  6.9119   |
 |         144 | Cushion (B&W)                                         | False      | -           |  6.88169  |

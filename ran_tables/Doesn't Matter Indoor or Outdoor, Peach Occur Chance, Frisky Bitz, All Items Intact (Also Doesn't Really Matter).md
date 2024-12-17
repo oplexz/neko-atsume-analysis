@@ -1,5 +1,5 @@
 #### Args
-Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_state=0, weather=0, is_indoor=False, output_type='cat_probability', total_duration_minutes=1440, cat_id=[24], group_def='item', items_of_interest_indoors=None, items_of_interest_outdoors=None, num_iterations_for_cat_on_cat=10, filter_by_na2=False)
+Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_state=0, weather='None', is_indoor=False, output_type='cat_probability', total_duration_minutes=1440, cat_id=[24], group_def='item', items_of_interest_indoors=None, items_of_interest_outdoors=None, num_iterations_for_cat_on_cat=10, filter_by_na2=False)
 
 #### Results
 |   Goodie Id | Name                                                  | Is Large   | Is in NA2   |       Value |
@@ -70,7 +70,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         190 | Melon Coccoon                                         | False      | -           | 0.000540272 |
 |         284 | Honey Pot                                             | False      | -           | 0.000537178 |
 |         146 | Cushion (Orange)                                      | False      | -           | 0.00053006  |
-|         259 | Kotatsu                                               | True       | -           | 0.000527085 |
+|         259 | Kotatsu                                               | True       | Yes         | 0.000527085 |
 |         185 | White Head Space                                      | False      | -           | 0.00052537  |
 |         149 | Shroom House (Red)                                    | False      | -           | 0.00052302  |
 |         161 | Bamboo House                                          | False      | -           | 0.000518125 |
@@ -108,7 +108,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         171 | Plum Cushion (Red)                                    | False      | Yes         | 0.000414915 |
 |         241 | Shell Tunnel (Pink)                                   | False      | -           | 0.000413178 |
 |         251 | Kick Toy (Mouse)                                      | False      | Yes         | 0.000411224 |
-|         141 | Cushion (Yellow)                                      | False      | -           | 0.000407005 |
+|         141 | Cushion (Yellow)                                      | False      | Yes         | 0.000407005 |
 |         289 | Bucket (Blue)                                         | False      | Yes         | 0.00040374  |
 |         307 | Traveler's Hat                                        | False      | Yes         | 0.00040348  |
 |         135 | Grass Cushion (Purple)                                | False      | -           | 0.000398177 |
@@ -157,7 +157,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         174 | Sheep Cushion                                         | False      | -           | 0.00029062  |
 |         215 | Warm Sock                                             | False      | -           | 0.00028361  |
 |         184 | Black Head Space                                      | False      | -           | 0.000275173 |
-|         197 | Zanzibar Cushion                                      | False      | -           | 0.000273913 |
+|         197 | Zanzibar Cushion                                      | False      | Yes         | 0.000273913 |
 |         112 | Cake Box                                              | False      | Yes         | 0.000270339 |
 |         105 | Beach Ball                                            | False      | -           | 0.000270001 |
 |         195 | Egg Bed (Pink)                                        | False      | -           | 0.000265391 |
@@ -181,14 +181,14 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         288 | Planter                                               | False      | Yes         | 0.000224021 |
 |         204 | Luxurious Hammock                                     | False      | -           | 0.000222443 |
 |         100 | Baseball                                              | False      | Yes         | 0.000222281 |
-|         183 | Head Space                                            | False      | -           | 0.000221072 |
+|         183 | Head Space                                            | False      | Yes         | 0.000221072 |
 |         206 | Egg Tart Bed                                          | -          | -           | 0.000218645 |
 |         107 | Soccer Ball                                           | False      | Yes         | 0.000216549 |
 |         138 | Cushion (Beige)                                       | False      | -           | 0.000214235 |
 |         163 | Thick Cooling Pad                                     | False      | -           | 0.000214066 |
 |         247 | Zebra Grass Gadget                                    | False      | -           | 0.000213543 |
 |         118 | Cardboard Truck                                       | False      | Yes         | 0.000208236 |
-|         245 | Wing-thing Teaser                                     | False      | -           | 0.000207707 |
+|         245 | Wing-thing Teaser                                     | False      | Yes         | 0.000207707 |
 |         216 | Pom-pom Sock                                          | False      | Yes         | 0.000206362 |
 |         244 | Tail-thing Teaser                                     | False      | Yes         | 0.000205328 |
 |         250 | Mister Dragonfly                                      | False      | Yes         | 0.000200846 |

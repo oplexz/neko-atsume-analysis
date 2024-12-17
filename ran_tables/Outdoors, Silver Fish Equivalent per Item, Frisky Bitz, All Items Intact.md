@@ -1,5 +1,5 @@
 #### Args
-Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_state=0, weather=0, is_indoor=False, output_type='silver_equiv', total_duration_minutes=1440, cat_id=None, group_def='item', items_of_interest_indoors=None, items_of_interest_outdoors=None, num_iterations_for_cat_on_cat=10, filter_by_na2=False)
+Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_state=0, weather='None', is_indoor=False, output_type='silver_equiv', total_duration_minutes=1440, cat_id=None, group_def='item', items_of_interest_indoors=None, items_of_interest_outdoors=None, num_iterations_for_cat_on_cat=10, filter_by_na2=False)
 
 #### Results
 |   Goodie Id | Name                                                  | Is Large   | Is in NA2   |     Value |
@@ -7,7 +7,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         260 | Round Kotatsu                                         | True       | -           | 660.696   |
 |         227 | Cat Metropolis                                        | True       | Yes         | 630.944   |
 |         230 | Tower of Treats                                       | True       | -           | 629.607   |
-|         259 | Kotatsu                                               | True       | -           | 627.436   |
+|         259 | Kotatsu                                               | True       | Yes         | 627.436   |
 |         261 | Sunken Fireplace                                      | True       | -           | 597.065   |
 |         226 | Cat Condo Complex                                     | True       | -           | 588.515   |
 |         123 | Cardboard Choo-choo                                   | True       | -           | 586.344   |
@@ -29,7 +29,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         159 | Dice Cube                                             | False      | -           | 362.954   |
 |         225 | Three-tier Cat Tree                                   | True       | -           | 360.209   |
 |         158 | Tiramisu Cube                                         | False      | -           | 354.883   |
-|         197 | Zanzibar Cushion                                      | False      | -           | 345.284   |
+|         197 | Zanzibar Cushion                                      | False      | Yes         | 345.284   |
 |         224 | Two-tier Cat Tree                                     | True       | Yes         | 332.501   |
 |         180 | Sushi Cushion (tuna)                                  | -          | -           | 332.438   |
 |         233 | Tunnel (U Piece)                                      | True       | Yes         | 325.18    |
@@ -92,7 +92,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         263 | Hot Mat (Small)                                       | False      | -           | 189.205   |
 |         176 | Sakuramochi Cushion                                   | False      | -           | 189.02    |
 |         216 | Pom-pom Sock                                          | False      | Yes         | 188.568   |
-|         183 | Head Space                                            | False      | -           | 188.115   |
+|         183 | Head Space                                            | False      | Yes         | 188.115   |
 |         217 | Colorful Sock                                         | False      | -           | 187.727   |
 |         104 | Watermelon Ball                                       | False      | -           | 184.114   |
 |         108 | Stress Reliever                                       | False      | Yes         | 184.095   |
@@ -137,7 +137,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         113 | Gift Box (Red)                                        | False      | -           | 166.138   |
 |         262 | Hot-Water Bottle                                      | False      | Yes         | 165.847   |
 |         117 | Cardboard (Flat)                                      | False      | -           | 164.517   |
-|         245 | Wing-thing Teaser                                     | False      | -           | 164.479   |
+|         245 | Wing-thing Teaser                                     | False      | Yes         | 164.479   |
 |         275 | Scratching Post                                       | False      | Yes         | 164.252   |
 |         247 | Zebra Grass Gadget                                    | False      | -           | 164.168   |
 |         251 | Kick Toy (Mouse)                                      | False      | Yes         | 164.132   |
@@ -182,7 +182,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         202 | Hammock (Pink)                                        | False      | -           | 146.153   |
 |         240 | Choco Cornet Tunnel                                   | False      | -           | 145.723   |
 |         205 | Chocolate Tart Bed                                    | -          | -           | 145.468   |
-|         141 | Cushion (Yellow)                                      | False      | -           | 145.447   |
+|         141 | Cushion (Yellow)                                      | False      | Yes         | 145.447   |
 |         206 | Egg Tart Bed                                          | -          | -           | 144.816   |
 |         150 | Shroom House (Blue)                                   | False      | -           | 144.77    |
 |         256 | Busy Bee                                              | False      | Yes         | 142.469   |
