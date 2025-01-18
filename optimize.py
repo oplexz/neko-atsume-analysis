@@ -18,48 +18,49 @@ cats_to_analyze = [name for name, id in cat_name_to_id.items() if int(id) >= 100
 # # Peaches
 cats_to_analyze.append("Peaches")
 
+cats_to_analyze = []
 # Example: already got mementos for some cats
 for x in [
-    "Snowball",
-    "Smokey", 
-    "Spots", 
-    "Shadow", 
-    "Sunny", 
+    # "Snowball",
+    # "Smokey", 
+    # "Spots", 
+    # "Shadow", 
+    # "Sunny", 
     # "Fred", 
-    "Pumpkin", 
-    "Callie", 
-    "Tabitha", 
+    # "Pumpkin", 
+    # "Callie", 
+    # "Tabitha", 
     # "Bandit", 
     # "Gabriel", 
     # "Marshmallow", 
     # "Socks", 
-    "Lexy", 
+    # "Lexy", 
     # "Bolt", 
     # "Breezy", 
     # "Misty", 
     # "Pickles", 
     # "Pepper", 
     # "Patches", 
-    "Gozer", 
+    # "Gozer", 
     # "Cocoa", 
     # "Princess", 
     # "Ginger", 
-    # "Peaches", 
+    "Peaches", 
     # "Spud", 
     # "Mack", 
-    "Speckles", 
+    # "Speckles", 
     # "Willie", 
     # "Rascal", 
     # "Dottie", 
-    "Spooky", 
+    # "Spooky", 
     # "Apricot", 
-    "Ganache", 
+    # "Ganache", 
     # "Pasty", 
     # "Chip", 
     # "Macchiato", 
-    "Melange", 
+    # "Melange", 
     # "Chocola", 
-    "Willow", 
+    # "Willow", 
     # "Sooty", 
     # "Quicksilver", 
     # "Maple", 
@@ -73,7 +74,7 @@ for x in [
     # "Ms. Fortune", 
     # "Bob the Cat", 
     # "Conductor Whiskers", 
-    "Tubbs", 
+    # "Tubbs", 
     # "Mr. Meowgi", 
     # "Lady Meow-Meow", 
     # "Guy Furry", 
@@ -81,18 +82,19 @@ for x in [
     # "Ramses the Great", 
     # "Sassy Fran", 
     # "Billy the Kitten", 
-    # "Frosty", 
+    "Frosty", 
     # "Sapphire", 
     # "Jeeves", 
     # "Bengal Jack", 
-    # "Whiteshadow", 
+    "Whiteshadow", 
     # "Hermeowne", 
     # "Informeow", 
     # "Survy", 
     # "Red Purrhood", 
     ]: 
-    if cats_to_analyze.count(x) > 0:
-        cats_to_analyze.remove(x)
+    cats_to_analyze.append(x)
+    # if cats_to_analyze.count(x) > 0:
+    #     cats_to_analyze.remove(x)
 
 ALLOWED_FOODS = range(1, 8)
 # ALLOWED_FOODS = [7]
@@ -104,11 +106,17 @@ FOOD_PENALTY = [0 for _ in range(0, 8)]
 # (cost per bulk (/50 for silver -> gold) / 3 (items per bulk) * 24 hours / hours per food)
 FOOD_PENALTY = [-9999, 0, 30/50 /3 * 24/6, 7/3 * 24/3, 17/3 * 24/3, 30/3 * 24/3, 5 * 24/3, 15 * 24]
 
+FOOD_PENALTY = [-9999, 0, 30/50 /3 * 24/6, 7/3 * 24/3, 17/3 * 24/3, 30/3 * 24/3, 5 * 24/3, 15 * 24] 
+FOOD_PENALTY = [-9999, 0, 0, 0, 0, 30/3 * 24/3, 5, 15 * 24] 
+FOOD_MEMENTO_MUL = [0, 0.2, 1, 1.2, 1.2, 2, 1.2, 1.2]
+# FOOD_PENALTY = [-9999, 0, 0, 0, 0, 30/3 * 24/3, 0, 15 * 24] 
+# FOOD_PENALTY = [0 for _ in range(0, 8)]
 BASE_ARGS = SimpleNamespace(**{
     "food_type_indoor": ALLOWED_FOODS_INDOOR[0],
     "food_type_outdoor": ALLOWED_FOODS_OUTDOOR[0],
-    "item_damage_state": 2,
-    "output_type": 'gold_equiv',
+    "item_damage_state": 1,
+    # "output_type": 'gold_equiv',
+    "output_type": 'cat_probability',
     "cat_id": [cat_name_to_id[cat_name] for cat_name in cats_to_analyze],
     "total_duration_minutes": 1440,
     "group_def": 'custom',
@@ -119,7 +127,10 @@ BASE_ARGS = SimpleNamespace(**{
 })
 
 analyzer = NekoAtsumeAnalyzer(BASE_ARGS)
-ITEMS = [x for x in analyzer.item_existence_set if x > 10 and x != 121]
+# ITEMS = [x for x in analyzer.item_existence_set if x > 10 and x != 121]
+# ITEMS = [x for x in analyzer.item_existence_set if x > 10 and x != 222]
+ITEMS = [x for x in analyzer.item_existence_set if x > 10 and x != 222 and x != 291 and x != 290 and x != 211]
+# ITEMS = [x for x in analyzer.item_existence_set if x > 10 and x != 120]
 
 # When for example optimizing layout after having done a cat_probability optimization
 # ITEMS = [100, 108, 129, 211, 258, 278, 296, 298, 300]
@@ -240,6 +251,7 @@ from multiprocessing import cpu_count
 
 executor = ProcessPoolExecutor(max_workers=cpu_count())
 MULTI_THREAD = True
+# MULTI_THREAD = False
 
 def generate_random_pool(size = POOL_SIZE) -> set[Yard]:
     pool = set()
@@ -347,7 +359,7 @@ def get_value(food_type_indoor: int, a: set[int], b: set[int], food_type_outdoor
 
     args.food_type_indoor = food_type_indoor
     args.food_type_outdoor = food_type_outdoor
-    args.items_of_interest_indoors = list(a) + list(b)
+    # args.items_of_interest_indoors = list(a) + list(b)
     args.items_of_interest_outdoors = list(c) + list(d) + [food_type_outdoor]
 
     analyzer = NekoAtsumeAnalyzer(args)
@@ -364,8 +376,9 @@ def get_value(food_type_indoor: int, a: set[int], b: set[int], food_type_outdoor
         #     max_food = max(max_food, resultsbase['Your Yard Total'])
 
         # Penalty is only applied when getting value for set type
-        return (results['Your Yard Total'] - max_food - FOOD_PENALTY[food_type_indoor] - FOOD_PENALTY[food_type_outdoor])
-        # + (get_value(food_type_indoor, a, b, food_type_outdoor, c, d, 'gold_equiv') / 10000) # In case you still want sorting for cat_probability
+        return (results['Your Yard Total'] * FOOD_MEMENTO_MUL[food_type_outdoor] - max_food - FOOD_PENALTY[food_type_indoor] - FOOD_PENALTY[food_type_outdoor])
+        # return (results['Your Yard Total'] - max_food - FOOD_PENALTY[food_type_indoor] - FOOD_PENALTY[food_type_outdoor])
+        # # + (get_value(food_type_indoor, a, b, food_type_outdoor, c, d, 'gold_equiv') / 10000) # In case you still want sorting for cat_probability
     return results['Your Yard Total']
 
 def k_tournament(yards: set[Yard]) -> set[Yard]:

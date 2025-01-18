@@ -41,7 +41,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         124 | Dino Deluxe                                           | True       | Yes         | 294.818   |
 |         232 | Tunnel (I Piece)                                      | True       | Yes         | 294.459   |
 |         306 | Golden Fish Statue                                    | False      | Yes         | 287.972   |
-|         128 | Silk Crepe Pillow                                     | False      | -           | 285.692   |
+|         128 | Silk Crepe Pillow                                     | False      | Yes         | 285.692   |
 |         200 | Giant Cushion (White)                                 | True       | -           | 282.005   |
 |         199 | Giant Cushion                                         | False      | -           | 282.003   |
 |         286 | Kokeshi Pot (Flow)                                    | False      | -           | 279.703   |
@@ -60,11 +60,11 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         182 | Sushi Cushion (omelet)                                | -          | -           | 238.868   |
 |         214 | Bamboo Rocket                                         | False      | -           | 235.834   |
 |         212 | Mushroom House                                        | False      | -           | 235.52    |
-|         195 | Egg Bed (Pink)                                        | False      | -           | 232.899   |
-|         281 | Lacquered Bowl                                        | False      | -           | 231.761   |
+|         195 | Egg Bed (Pink)                                        | False      | Yes         | 232.899   |
+|         281 | Lacquered Bowl                                        | False      | Yes         | 231.761   |
 |         179 | Pancake Cushion                                       | False      | -           | 230.44    |
 |         270 | Kiddy Rucksack (Blue)                                 | False      | -           | 226.849   |
-|         131 | Snowy Pillow                                          | False      | -           | 225.823   |
+|         131 | Snowy Pillow                                          | False      | Yes         | 225.823   |
 |         187 | Chestnut Cushion                                      | False      | -           | 225.612   |
 |         193 | Egg Bed (White)                                       | False      | -           | 223.873   |
 |         190 | Melon Coccoon                                         | False      | -           | 223.035   |
@@ -84,16 +84,18 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         254 | Kick Toy (Saury)                                      | False      | -           | 198.689   |
 |         298 | Cowboy Hat                                            | False      | Yes         | 198.511   |
 |         192 | Strawberry Cocoon                                     | False      | -           | 197.652   |
+|         312 | Santa Kokeshi                                         | False      | Yes         | 196.785   |
 |         186 | Basket Case                                           | False      | -           | 196.758   |
 |         191 | Berry Coccoon                                         | False      | -           | 195.932   |
 |         252 | Kick Toy (Fish)                                       | False      | -           | 193.252   |
 |         198 | Bean Bag                                              | False      | Yes         | 192.994   |
 |         168 | Manta Gel Mat                                         | False      | -           | 192.489   |
 |         263 | Hot Mat (Small)                                       | False      | -           | 189.205   |
-|         176 | Sakuramochi Cushion                                   | False      | -           | 189.02    |
+|         176 | Sakuramochi Cushion                                   | False      | Yes         | 189.02    |
 |         216 | Pom-pom Sock                                          | False      | Yes         | 188.568   |
 |         183 | Head Space                                            | False      | Yes         | 188.115   |
 |         217 | Colorful Sock                                         | False      | -           | 187.727   |
+|         313 | Reindeer Kokeshi                                      | False      | Yes         | 186.291   |
 |         104 | Watermelon Ball                                       | False      | -           | 184.114   |
 |         108 | Stress Reliever                                       | False      | Yes         | 184.095   |
 |         189 | Orange Coccoon                                        | False      | -           | 183.945   |
@@ -103,7 +105,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         280 | Iron Teapod                                           | False      | -           | 181.716   |
 |         167 | Marble Pad                                            | False      | -           | 181.419   |
 |         278 | Earthenware Pot                                       | False      | Yes         | 180.357   |
-|         177 | Kashiwamochi Cushion                                  | False      | -           | 179.516   |
+|         177 | Kashiwamochi Cushion                                  | False      | Yes         | 179.516   |
 |         172 | Plum Cushion (Pink)                                   | False      | -           | 179.514   |
 |         294 | Goldfish Bowl                                         | False      | Yes         | 178.732   |
 |         271 | Kiddy Rucksack (Lime)                                 | False      | -           | 178.499   |
@@ -121,7 +123,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         152 | Fluffy Bed (White)                                    | False      | Yes         | 172.82    |
 |         109 | Ball of Yarn                                          | False      | Yes         | 172.624   |
 |         125 | Pillow (Purple)                                       | False      | -           | 172.592   |
-|         110 | Toy Capsule                                           | False      | -           | 172.011   |
+|         110 | Toy Capsule                                           | False      | Yes         | 172.011   |
 |         132 | Grass Cushion (Red)                                   | False      | -           | 171.41    |
 |         165 | Aluminium Bowl                                        | False      | -           | 171.405   |
 |         106 | Ping-Pong Ball                                        | False      | Yes         | 170.8     |
@@ -164,7 +166,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         219 | Cozy Blanket (Red)                                    | False      | -           | 154.405   |
 |         301 | Cat Macaron (Green)                                   | False      | -           | 153.466   |
 |         118 | Cardboard Truck                                       | False      | Yes         | 153.427   |
-|         249 | Mister Mouse                                          | False      | -           | 152.782   |
+|         249 | Mister Mouse                                          | False      | Yes         | 152.782   |
 |         215 | Warm Sock                                             | False      | -           | 152.677   |
 |         304 | Box Tissue                                            | False      | Yes         | 152.583   |
 |         133 | Grass Cushion (Navy)                                  | False      | -           | 152.497   |
@@ -207,9 +209,12 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         257 | Butterfly Swarm                                       | False      | -           | 128.683   |
 |         248 | Fluff-thing Teaser                                    | False      | -           | 127.592   |
 |         289 | Bucket (Blue)                                         | False      | Yes         | 123.24    |
+|         310 | X'mas bucket (Blue)                                   | False      | Yes         | 123.24    |
 |         273 | Plastic Bag                                           | False      | Yes         | 121.544   |
 |         291 | Bucket (Yellow)                                       | False      | Yes         | 118.686   |
+|         309 | X'mas bucket (Green)                                  | False      | Yes         | 118.686   |
 |         290 | Bucket (Red)                                          | False      | Yes         | 116.927   |
+|         311 | X'mas bucket (Red)                                    | False      | Yes         | 116.927   |
 |         112 | Cake Box                                              | False      | Yes         | 116.672   |
 |         272 | Paper Bag                                             | False      | Yes         | 116.241   |
 |         143 | Cushion (Choco mint)                                  | False      | -           | 109.288   |
