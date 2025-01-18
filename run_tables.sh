@@ -1,4 +1,6 @@
 # Note: this is arguably the most clear way to list the commands
+python fetch_new_items.py
+
 output_folder=ran_tables
 rm -r $output_folder
 mkdir $output_folder
