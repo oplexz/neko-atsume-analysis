@@ -10,7 +10,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         259 | Kotatsu                                               | True       | Yes         | 626.7     |
 |         261 | Sunken Fireplace                                      | True       | -           | 596.349   |
 |         226 | Cat Condo Complex                                     | True       | -           | 588.515   |
-|         123 | Cardboard Choo-choo                                   | True       | -           | 586.344   |
+|         123 | Cardboard Choo-choo                                   | True       | Yes         | 586.344   |
 |         231 | Bureau with Pot                                       | True       | -           | 571.469   |
 |         229 | Art Deco Cat Tree                                     | True       | -           | 560.773   |
 |         221 | Paper Umbrella                                        | True       | -           | 484.314   |
@@ -33,7 +33,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         224 | Two-tier Cat Tree                                     | True       | Yes         | 332.501   |
 |         180 | Sushi Cushion (tuna)                                  | -          | -           | 332.438   |
 |         233 | Tunnel (U Piece)                                      | True       | Yes         | 325.18    |
-|         160 | Stump House                                           | False      | -           | 318.357   |
+|         160 | Stump House                                           | False      | Yes         | 318.357   |
 |         156 | Orange Cube                                           | False      | -           | 317.474   |
 |         155 | Royal Bed                                             | False      | -           | 312.77    |
 |         157 | Navy-blue Cube                                        | False      | -           | 311.709   |
@@ -63,11 +63,11 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         212 | Mushroom House                                        | False      | -           | 235.52    |
 |         195 | Egg Bed (Pink)                                        | False      | Yes         | 232.899   |
 |         281 | Lacquered Bowl                                        | False      | Yes         | 231.761   |
-|         179 | Pancake Cushion                                       | False      | -           | 230.44    |
+|         179 | Pancake Cushion                                       | False      | Yes         | 230.44    |
 |         270 | Kiddy Rucksack (Blue)                                 | False      | -           | 226.849   |
 |         187 | Chestnut Cushion                                      | False      | -           | 225.612   |
 |         131 | Snowy Pillow                                          | False      | Yes         | 223.943   |
-|         190 | Melon Coccoon                                         | False      | -           | 223.035   |
+|         190 | Melon Coccoon                                         | False      | Yes         | 223.035   |
 |         193 | Egg Bed (White)                                       | False      | -           | 221.195   |
 |         130 | Maple Pillow                                          | False      | -           | 219.037   |
 |         107 | Soccer Ball                                           | False      | Yes         | 218.438   |
@@ -99,7 +99,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         313 | Reindeer Kokeshi                                      | False      | Yes         | 186.291   |
 |         104 | Watermelon Ball                                       | False      | -           | 184.114   |
 |         108 | Stress Reliever                                       | False      | Yes         | 184.095   |
-|         189 | Orange Coccoon                                        | False      | -           | 183.945   |
+|         189 | Orange Coccoon                                        | False      | Yes         | 183.945   |
 |         145 | Cushion (Lemon)                                       | False      | -           | 182.568   |
 |         183 | Head Space                                            | False      | Yes         | 182.433   |
 |         139 | Cushion (Pink)                                        | False      | -           | 181.743   |
@@ -174,15 +174,15 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         304 | Box Tissue                                            | False      | Yes         | 152.583   |
 |         300 | Cat Macaron (Pink)                                    | False      | Yes         | 152.272   |
 |         302 | Cat Pancake                                           | False      | -           | 152.272   |
-|         201 | Hammock (Yellow)                                      | False      | -           | 151.749   |
-|         148 | Lucky Cushion                                         | False      | -           | 151.748   |
+|         201 | Hammock (Yellow)                                      | False      | Yes         | 151.749   |
+|         148 | Lucky Cushion                                         | False      | Yes         | 151.748   |
 |         308 | Ticket Cushion                                        | False      | Yes         | 151.748   |
 |         133 | Grass Cushion (Navy)                                  | False      | -           | 151.681   |
 |         274 | Scratching Board                                      | False      | Yes         | 151.169   |
 |         250 | Mister Dragonfly                                      | False      | Yes         | 150.08    |
 |         296 | Glass Vase                                            | False      | Yes         | 148.415   |
 |         288 | Planter                                               | False      | Yes         | 146.443   |
-|         202 | Hammock (Pink)                                        | False      | -           | 146.153   |
+|         202 | Hammock (Pink)                                        | False      | Yes         | 146.153   |
 |         240 | Choco Cornet Tunnel                                   | False      | Yes         | 145.723   |
 |         205 | Chocolate Tart Bed                                    | -          | Yes         | 145.468   |
 |         141 | Cushion (Yellow)                                      | False      | Yes         | 145.447   |

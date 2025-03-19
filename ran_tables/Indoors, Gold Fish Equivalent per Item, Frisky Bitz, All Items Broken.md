@@ -10,7 +10,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         231 | Bureau with Pot                                       | True       | -           | 33.5906   |
 |         260 | Round Kotatsu                                         | True       | -           | 33.4401   |
 |         259 | Kotatsu                                               | True       | Yes         | 32.2131   |
-|         123 | Cardboard Choo-choo                                   | True       | -           | 30.8195   |
+|         123 | Cardboard Choo-choo                                   | True       | Yes         | 30.8195   |
 |         229 | Art Deco Cat Tree                                     | True       | -           | 29.3753   |
 |         261 | Sunken Fireplace                                      | True       | -           | 29.2722   |
 |         235 | Tunnel (3D Piece)                                     | True       | -           | 27.9106   |
@@ -31,7 +31,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         159 | Dice Cube                                             | False      | -           | 16.8855   |
 |         224 | Two-tier Cat Tree                                     | True       | Yes         | 16.3881   |
 |         156 | Orange Cube                                           | False      | -           | 16.2303   |
-|         160 | Stump House                                           | False      | -           | 16.0234   |
+|         160 | Stump House                                           | False      | Yes         | 16.0234   |
 |         233 | Tunnel (U Piece)                                      | True       | Yes         | 16.0036   |
 |         157 | Navy-blue Cube                                        | False      | -           | 15.9962   |
 |         238 | Cow Tunnel                                            | True       | -           | 15.4536   |
@@ -52,7 +52,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         181 | Sushi Cushion (shrimp)                                | -          | -           | 11.2501   |
 |         306 | Golden Fish Statue                                    | False      | Yes         | 10.7409   |
 |         182 | Sushi Cushion (omelet)                                | -          | -           | 10.7357   |
-|         179 | Pancake Cushion                                       | False      | -           | 10.6185   |
+|         179 | Pancake Cushion                                       | False      | Yes         | 10.6185   |
 |         196 | Egg Bed (Nightview)                                   | False      | Yes         | 10.4505   |
 |         155 | Royal Bed                                             | False      | -           | 10.4401   |
 |         285 | Kokeshi Pot (Blossom)                                 | False      | -           | 10.2859   |
@@ -99,7 +99,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         171 | Plum Cushion (Red)                                    | False      | Yes         |  8.66679  |
 |         217 | Colorful Sock                                         | False      | -           |  8.59851  |
 |         251 | Kick Toy (Mouse)                                      | False      | Yes         |  8.55675  |
-|         189 | Orange Coccoon                                        | False      | -           |  8.53231  |
+|         189 | Orange Coccoon                                        | False      | Yes         |  8.53231  |
 |         244 | Tail-thing Teaser                                     | False      | Yes         |  8.51809  |
 |         255 | Kick Toy (Sea Bream)                                  | -          | -           |  8.49927  |
 |         263 | Hot Mat (Small)                                       | False      | -           |  8.49312  |
@@ -113,7 +113,7 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         172 | Plum Cushion (Pink)                                   | False      | -           |  8.45617  |
 |         268 | Pile of Leaves                                        | False      | -           |  8.44583  |
 |         315 | Kick Toy (Tsuchinoko)                                 | False      | Yes         |  8.43966  |
-|         190 | Melon Coccoon                                         | False      | -           |  8.43345  |
+|         190 | Melon Coccoon                                         | False      | Yes         |  8.43345  |
 |         125 | Pillow (Purple)                                       | False      | -           |  8.4201   |
 |         247 | Zebra Grass Gadget                                    | False      | -           |  8.41879  |
 |         103 | Rubber Ball (Blue)                                    | False      | -           |  8.40817  |
@@ -162,17 +162,17 @@ Namespace(food_type=None, food_type_indoor=2, food_type_outdoor=2, item_damage_s
 |         117 | Cardboard (Flat)                                      | False      | -           |  7.9156   |
 |         297 | Jumbo Glass Mug                                       | False      | Yes         |  7.89515  |
 |         215 | Warm Sock                                             | False      | -           |  7.88195  |
-|         201 | Hammock (Yellow)                                      | False      | -           |  7.876    |
+|         201 | Hammock (Yellow)                                      | False      | Yes         |  7.876    |
 |         295 | Snow Dome                                             | False      | -           |  7.87032  |
 |         204 | Luxurious Hammock                                     | False      | Yes         |  7.84823  |
 |         106 | Ping-Pong Ball                                        | False      | Yes         |  7.83646  |
-|         202 | Hammock (Pink)                                        | False      | -           |  7.83593  |
+|         202 | Hammock (Pink)                                        | False      | Yes         |  7.83593  |
 |         136 | Pinewood Mat                                          | False      | -           |  7.82846  |
 |         184 | Black Head Space                                      | False      | -           |  7.81989  |
 |         249 | Mister Mouse                                          | False      | Yes         |  7.81693  |
 |         183 | Head Space                                            | False      | Yes         |  7.79604  |
 |         133 | Grass Cushion (Navy)                                  | False      | -           |  7.7879   |
-|         148 | Lucky Cushion                                         | False      | -           |  7.74215  |
+|         148 | Lucky Cushion                                         | False      | Yes         |  7.74215  |
 |         308 | Ticket Cushion                                        | False      | Yes         |  7.74215  |
 |         243 | Shell Tunnel (White)                                  | False      | -           |  7.72075  |
 |         116 | Shopping Box (Large)                                  | False      | Yes         |  7.71354  |
